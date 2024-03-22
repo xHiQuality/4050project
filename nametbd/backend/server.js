@@ -1,32 +1,31 @@
-const express = require('express');
-const mysql = require('mysql');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
+const db = require("./models");
+db.sequelize.sync();
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    database: '4050project',
-    user: "root",
-    password: "admin"
+var corsOptions = {
+    origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+//parse requests of content-type - application/json
+app.use(express.json());
+
+//parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({extended: true}));
+
+//simple route
+app.get("/", (req,res) => {
+    res.json({ message: "Welcome to application."});
 });
 
-connection.connect(function(err) {
-    if (err) {
-        console.error('Error connecting: ' + err.stack);
-        return;
-    }
-
-    console.log('Connected as id ' + connection.threadId);
-});
-
-connection.query('SELECT * FROM user', function(error,results,fields) {
-    if (error)
-        throw error;
-
-    results.forEach(result => {
-        console.log(result);
-    });
-    console.log('gathered info');
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
 
 
