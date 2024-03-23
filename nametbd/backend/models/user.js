@@ -2,7 +2,7 @@ const { sequelize, Sequelize } = require(".");
 
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("user", {
-        id: {
+        iduser: {
             type: Sequelize.INTEGER,
             primaryKey: true, // Define id as primary key
             autoIncrement: true // Assuming id is auto-incrementing
@@ -15,8 +15,9 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING(20),
             allowNull: false, // Specify NOT NULL constraint
-            unique: true // Add unique constraint
         }
+    }, {
+        timestamps: false
     });
     
 

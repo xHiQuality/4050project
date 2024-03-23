@@ -3,7 +3,19 @@ const cors = require("cors");
 
 const app = express();
 const db = require("./models");
-db.sequelize.sync();
+const { USER } = require("./config/db.config");
+
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
+
+// db.sequelize.sync({force: true}).then(() => {
+//     console.log("Drop and re-sync db.");
+// });
 
 var corsOptions = {
     origin: "http://localhost:8081"
@@ -18,15 +30,21 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //simple route
-app.get("/", (req,res) => {
-    res.json({ message: "Welcome to application."});
-});
+// app.get("/", (req,res) => {
+//     res.json({ message: "Welcome to application."});
+// });
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
+
+require("./routes/user.routes")(app);
+require("./routes/post.routes")(app);
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+
 
 
 

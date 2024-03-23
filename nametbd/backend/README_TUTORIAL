@@ -1,0 +1,47 @@
+Backend Tutorial used from bezkoder.com
+
+Installation guide for Backend (MySQL)
+
+
+Install MySQL Workbench:
+https://dev.mysql.com/downloads/workbench/
+
+When prompted choose to install all (client, server, etc.)
+
+
+Setup a new connection on the localhost or 127.0.0.1
+IMPORTANT following values must be exact.
+user = root
+password = admin
+
+Find the query input text field and copy and paste the following statement.
+
+CREATE DATABASE 4050project;
+
+CREATE TABLE `users` (
+  `iduser` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`iduser`),
+  UNIQUE KEY `username` (`username`)
+);
+
+CREATE TABLE `posts` (
+  `idpost` int NOT NULL AUTO_INCREMENT,
+  `tag` varchar(20) NOT NULL,
+  `header` varchar(50) NOT NULL,
+  `author` varchar(20) NOT NULL,
+  `content` varchar(250) NOT NULL,
+  PRIMARY KEY (`idpost`),
+  UNIQUE KEY `idpost` (`idpost`),
+  KEY `author` (`author`),
+  CONSTRAINT `author` FOREIGN KEY (`author`) REFERENCES `users` (`username`)
+)
+
+
+Install Postman.
+https://www.postman.com/downloads/postman-agent/
+
+Create an account at https://www.postman.com/
+
+I can go over the rest at our next meeting.

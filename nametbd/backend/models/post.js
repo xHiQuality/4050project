@@ -1,8 +1,8 @@
 const { sequelize, Sequelize } = require(".");
 
 module.exports = (sequelize, Sequelize) => {
-    const Post = sequelize.define("Post", {
-        id: {
+    const Post = sequelize.define("posts", {
+        idpost: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         tag: {
             type: Sequelize.STRING(20), // Set max length to 20 characters
-            allowNull: false
+            //allowNull: false
         },
         header: {
             type: Sequelize.STRING(50), // Set max length to 50 characters
@@ -28,6 +28,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(250), // Set max length to 250 characters
             allowNull: false
         }
+    }, {
+        timestamps: false
     });
     
 
