@@ -1,0 +1,15 @@
+
+
+.home{
+  padding-bottom: 20px;
+  background-color: #cbd0d4;
+}
+
+.post{
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.post:hover{
+  outline: 1px solid black;
+}
