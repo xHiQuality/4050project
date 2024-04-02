@@ -7,7 +7,6 @@ export default function homepage() {
   const posts = [
     {
       id: 1,
-      tag: "r/Food",
       title: 'What Should I Eat For Dinner?',
       text: "I'm torn between pasta or pho'. Italian or Asian. Thoughts? jhhjbkjb jjbjbkj dbjkbdef jkbdjkbe jkbedkjfb jkebfk jbrjkfb rjbfjrbf jkbjke jbejr bfjrbj brfbj brjfbr",
       img: "https://tse4.mm.bing.net/th?id=OIP.JKGWlAlIHdOM6DmypdCyzgHaEK&pid=Api&P=0&h=180",
@@ -15,11 +14,11 @@ export default function homepage() {
       author: "skycole768",
       accountImage:
         'https://lh3.googleusercontent.com/p/AF1QipNrqoDjdkfcLJAIHgqim9ATpX5f0v8zgMVRCRia=s1360-w1360-h1020',
-      commentsNum: 120
+      commentsNum: 120,
+      votes: 300
     },
     {
       id: 1,
-      tag: "r/Food",
       title: 'What Should I Eat For Dinner?',
       text: "I'm torn between pasta or pho'. Italian or Asian. Thoughts? jhhjbkjb jjbjbkj dbjkbdef jkbdjkbe jkbedkjfb jkebfk jbrjkfb rjbfjrbf jkbjke jbejr bfjrbj brfbj brjfbr",
       img: "https://tse4.mm.bing.net/th?id=OIP.JKGWlAlIHdOM6DmypdCyzgHaEK&pid=Api&P=0&h=180",
@@ -27,11 +26,11 @@ export default function homepage() {
       author: "skycole768",
       accountImage:
         'https://lh3.googleusercontent.com/p/AF1QipNrqoDjdkfcLJAIHgqim9ATpX5f0v8zgMVRCRia=s1360-w1360-h1020',
-      commentsNum: 120
+      commentsNum: 120,
+      votes: 300
     },
     {
       id: 1,
-      tag: "r/Food",
       title: 'What Getting corrections from leaders during class',
       text: "I’ve been taking classes for a few months after just picking stuff up going to dances for a little over a year. I skated by on not knowing much from having a non-social dance background and being a decent follower but realized to get any further I’d have to really study, which is something I’m glad to be doing." +
 
@@ -51,7 +50,8 @@ export default function homepage() {
       author: "skycole768",
       accountImage:
         'https://lh3.googleusercontent.com/p/AF1QipNrqoDjdkfcLJAIHgqim9ATpX5f0v8zgMVRCRia=s1360-w1360-h1020',
-      commentsNum: 20
+      commentsNum: 20,
+      votes: 300
     }
   ]
 

@@ -1,17 +1,82 @@
 .logo{
-    display: inline ;
-    padding: 5px;
     border-radius: 50%;
-    width: 15%;
+    width: 100%;
 }
 
 .search-icon{
-    width: 5%;
-    display: inline;
+    position: absolute;
+    right: 67%;
+    top: 5.5%;
+    width: 2%;
+    height: 2%;
+}
+.message-icon{
+    width: 60%;
+}
+
+.navButton{
+    border:none;
+    border-radius: 25px;
+    background-color: inherit;
+}
+
+.navButton:hover{
+    background-color: rgb(224, 224, 224);
+}
+
+#message-button, #create-button, #login-button{
+    position: relative;
+    width: 10%;
+    top: 4%;
+    font-size: 15px;
+    height: 30px;
+}
+
+#message-button{
+    left: -10%;
+}
+
+#create-button{
+    left: -9%;
+}
+
+#login-button{
+    background-color: #008AD8;
+    color: white;
+    font-size: 13px;
+    font-weight: bolder;
+    left: -7%;
+}
+
+.logo-button{
+    width: 10%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+#login-button:hover {
+    background-color: #19ABFF; 
+  }
+
+.plus-icon{
+    width: 60%;
 }
 
 #navbar-search-field{
+    top: 4%;
+    padding-left: 4%;
+    position: absolute;
+    left: 30%;
+    border-radius: 25px;
     display: inline;
+    width: 42%;
+    height: 4.5%;
+    border: none;
+    background-color: rgb(224, 224, 224);
+}
+.bar{
+    display: flex;
 }
 
 .navbar {
@@ -19,7 +84,16 @@
     justify-content: space-between;
     align-items: center;
     color: #fff;
-    padding: 12px;
-    margin-bottom: 8px;
+    padding:  .5%;
     background-color: #fff;
+  }
+
+  hr{
+    width: 90%;
+    margin: 0%;
+    border-top-color: black;
+  }
+
+  .container{
+    margin-bottom: 1%;
   }
