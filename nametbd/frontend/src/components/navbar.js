@@ -46,6 +46,7 @@ return (
           />
       </button>
         <button className = "navButton" id="login-button">Login</button>
+        <button to ="/profile" className="navButton" id ="profile-button">Profile</button>
         </nav>
         <hr></hr>
         </div>
