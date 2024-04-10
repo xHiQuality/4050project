@@ -1,0 +1,62 @@
+.userProfile {
+    max-width: 600px;
+    margin: auto;
+    padding: 25px;
+    background-color: #cbd0d4;
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.editProfileButton {
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 2px;
+    border-radius: 3.5px;
+}
+
+.editProfileButton:hover {
+    background-color: blue;
+    border: 2.5px;
+}
+
+.profileInfo {
+    display: flexbox;
+    align-items: center;
+}
+
+.profilePicture {
+    width: 250px;
+    height: 250px;
+    margin: 2px;
+}
+
+.userDetails {
+    display: block;
+    word-wrap: break-word;
+}
+
+.Posts {
+    display: grid;
+    padding-bottom: 6%;
+    padding-top: 1%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-left: 40px solid #f7f6f6;
+    outline: 1px solid darkgray;
+}
+
+.shareProfileButton {
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 2px;
+    border-radius: 3.5px;
+}
+
+.shareProfileButton:hover {
+    background-color: blue;
+    border: 2.5px;
+}
