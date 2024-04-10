@@ -1,6 +1,7 @@
 import '../styles/homepage.css';
 import Post from './post.js';
 import Navbar from './navbar.js';
+import Profile from './profile.js';
 
 export default function homepage() {
 
@@ -58,6 +59,7 @@ export default function homepage() {
   return (
     <div className="home">
       <Navbar></Navbar>
+      <Profile></Profile>
       <div className="Page">
         {posts.map((posts, index) => {
           return <Post className = "post" item={posts} />;
