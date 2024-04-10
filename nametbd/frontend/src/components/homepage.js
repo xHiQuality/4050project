@@ -59,7 +59,6 @@ export default function homepage() {
   return (
     <div className="home">
       <Navbar></Navbar>
-      <Profile></Profile>
       <div className="Page">
         {posts.map((posts, index) => {
           return <Post className = "post" item={posts} />;

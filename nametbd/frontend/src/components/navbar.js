@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/navbar.css';
+import { Link } from 'react-router-dom';
 
 function navbar(props) {
     
@@ -46,7 +47,7 @@ return (
           />
       </button>
         <button className = "navButton" id="login-button">Login</button>
-        <button to ="/profile" className="navButton" id ="profile-button">Profile</button>
+        <Link to ="/profile" className="navButton" id ="profile-button">Profile</Link>
         </nav>
         <hr></hr>
         </div>
