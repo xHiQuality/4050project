@@ -1,17 +1,26 @@
 .userProfile {
-    max-width: 600px;
+    max-width: 80%;
     margin: auto;
-    padding: 25px;
-    background-color: #cbd0d4;
+    padding: 20px;
+    background-color: #c6d6dc;
+    border-radius: 5px;    
+    border: 2px outset lightgray;
+    opacity: 0.8;
 }
 
 .profileHeader {
     display: flex;
     align-items: center;
     margin: auto;
+    padding: 25px 50px 25px 50px;       /*top right bottom left*/
+    height: 350px;
+    width: 50%;
+    font: Verdana;
 }
 
 .editProfileButton {
+    float: left;
+    text-align: center;
     background-color: rgb(32, 42, 192);
     color: #cbd0d4;
     border: 2px;
@@ -19,7 +28,7 @@
 }
 
 .editProfileButton:hover {
-    background-color: blue;
+    background-color: rgb(69, 33, 154);
     border: 2.5px;
 }
 
@@ -29,9 +38,20 @@
 }
 
 .profilePicture {
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 100px;
     margin: 2px;
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 0.5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.profilePicture:hover {
+    box-shadow: 0 0 2px 1px rgb(192, 80, 32);
+    opacity: 0.8;
 }
 
 .userDetails {
