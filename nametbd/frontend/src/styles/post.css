@@ -1,181 +1,184 @@
 .menuBar{
-    list-style: none;
-    margin: 0;
-    padding: 1%;
-    overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 1%;
+  overflow: hidden;
 }
 
 .interactBar{
-    display: inline-block;
-    list-style: none;
-    padding-bottom: 10px;
-    overflow: hidden;
-    margin: 0;
+  display: inline-block;
+  list-style: none;
+  padding-bottom: 10px;
+  overflow: hidden;
+  margin: 0;
 }
 
 .interactItem{
-    position: absolute;
-    display: inline;
-    width: 15%;
+  position: absolute;
+  display: inline;
+  width: 15%;
 }
 
 li {
-    float: left;
+  float: left;
 }
 
 .followButton{
-    padding: 1%;
-    border-radius: 15px;
-    border-style: none; 
-    background-color: #008AD8;
-    color: white;
-    font-size: 90%;
-    font-family:  Arial, Helvetica, sans-serif;
-    position: absolute;
-    right: 3%;
-    font-weight: bolder;
-    width: 8%;
+  padding: 1%;
+  border-radius: 15px;
+  border-style: none; 
+  background-color: #008AD8;
+  color: white;
+  font-size: 90%;
+  font-family:  Arial, Helvetica, sans-serif;
+  position: absolute;
+  right: 3%;
+  font-weight: bolder;
+  width: 8%;
 }
 .postbutton{
-    border: none;
-    cursor: pointer;
-    appearance: none;
-    background-color: inherit;
-    width: 50%;
-    display: block;
-   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+  width: 50%;
+  display: block;
+ position: relative;
+margin-left: auto;
+margin-right: auto;
 }
 .menuItem{
-    position: relative;
-    top: 10px;
-    display: inline;
-    padding: 5px;
-    
+  position: relative;
+  top: 10px;
+  display: inline;
+  padding: 5px;
+  
 }
 #accountImg {
-    display: inline ;
-    padding: 5px;
-    border-radius: 50%;
-    width: 40px;
+  display: inline ;
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
 }
 .description {
-    display: block;
-    word-wrap: break-word;
+  display: block;
+  word-wrap: break-word;
 }
 
 .interactButton {
-    margin-top: 1%;
-    border: none;
-    cursor: pointer;
-    appearance: none;
-    background-color: inherit;
-    width: 12%;
-    border-radius: 15px;
-    position: absolute;
-    height: 40px;
-    background-color: rgb(224, 224, 224);
-  }
-
-  .accountButton:hover{
-    background-color: rgb(222, 222, 222);
-  }
-  .text{
-    display: inline;
-    margin-left: 25%;
-  }
-
-  #comment{
-    left: 1.5%;
-  }
-
-  #share{
-    left: 15.5%;
-  }
-
-  #save{
-    left: 29.5%;
-  }
-
-  #other{
-    border: none;
-    cursor: pointer;
-    appearance: none;
-    width: 5%;
-    border-radius: 15px;
-    position: absolute;
-    height: 30px;
-    background-color: inherit;
-    left: 98%;
-  }
-
-  #otherImage{
-    position: absolute;
-    left: 30%;
-    top: 25%;
-    display: inline;
-    width: 40%;
-  }
-
-  #other:hover{
-    background-color: rgb(224, 224, 224);
-    
+  margin-top: 1%;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+  width: 12%;
+  border-radius: 15px;
+  position: absolute;
+  height: 40px;
+  background-color: rgb(224, 224, 224);
 }
-  .interactButton:hover{
-    background-color: rgb(206, 206, 206);
-    
+
+.accountButton:hover{
+  background-color: rgb(222, 222, 222);
+}
+.text{
+  display: inline;
+  margin-left: 25%;
+}
+
+#comment{
+  left: 1.5%;
+}
+
+#share{
+  left: 15.5%;
+}
+
+#save{
+  left: 29.5%;
+}
+
+#other{
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  width: 5%;
+  border-radius: 15px;
+  position: absolute;
+  height: 30px;
+  background-color: inherit;
+  left: 98%;
+}
+
+#otherImage{
+  position: absolute;
+  left: 30%;
+  top: 25%;
+  display: inline;
+  width: 40%;
+}
+
+#other:hover{
+  background-color: rgb(224, 224, 224);
+  
+}
+.interactButton:hover{
+  background-color: rgb(206, 206, 206);
+  
 }
 
 .column1{
-    left: -115%;
-    grid-column: 1;
-    position: relative;
-    display: block;
+  left: -115%;
+  grid-column: 1;
+  position: relative;
+  display: block;
 }
 
 .column2{
-    right: 30px;
-    grid-column: 2;
-    position: relative;
-    display: block;
+  right: 30px;
+  grid-column: 2;
+  position: relative;
+  display: block;
 }
 .post{
-    display: grid;
-    padding-bottom: 6%;
-    padding-top: 1%;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    border-left: 40px solid #f7f6f6;
-    outline: 1px solid darkgray;
+  display: grid;
+  padding-bottom: 6%;
+  padding-top: 1%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  border-left: 40px solid #f7f6f6;
+  outline: 1px solid darkgray;
 }
 
 .votes {
-    width: 30px; /* Set a width if you like */
-  }
+  width: 30px; /* Set a width if you like */
+  color: black
+}
 
-  .arrowButton{
-    border:none;
-    background-color: inherit;
-  }
-  .arrowButton:hover{
-    background-color: lightgray;
-  }
-
-  #downArrow{
-    transform: rotate(180deg);
-  }
+.arrowButton{
+  border:none;
+  background-color: inherit;
   
-  .votes img {
-    width: 100%;
-    color: black;
-    display: block;
-  }
+}
+.arrowButton:hover{
+  background-color: lightgray;
+}
+
+#downArrow{
+  transform: rotate(180deg);
+}
+
+.votes img {
+  width: 100%;
+  color: black;
+  display: block;
+}
 
 .title{
-    padding-left: 1%;
-    padding-right: 1%;
-    font-weight: 520;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-weight: 520;
+  color: black;
 }
 
 #postInfo{
@@ -186,32 +189,33 @@ color: rgb(174, 174, 174);
 font-weight:lighter;
 }
 .accountButton{
-    background-color: inherit;
-    border: none;
-    border-radius: 50%;
+  background-color: inherit;
+  border: none;
+  border-radius: 50%;
 }
 
 hr{
-    border-top: lightgrey;
-    width: 100%;
+  border-top: lightgrey;
+  width: 100%;
 }
 
 .followButton:hover {
-    background-color: #19ABFF; 
-  }
+  background-color: #19ABFF; 
+}
 
 .visual{
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 .textContainer{
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  overflow-y: scroll;
-  padding-left: 1%;
-  padding-right: 1%;
+-webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+overflow-y: scroll;
+padding-left: 1%;
+padding-right: 1%;
+color: #000;
 }     
