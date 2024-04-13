@@ -1,213 +1,213 @@
 .menuBar{
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 1%;
-    overflow: hidden;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 1%;
+  overflow: hidden;
 }
 
 .interactBar{
-    display: flex;
-    list-style: none;
-    padding-left: 1%;
-    padding-top: 3%;
-    overflow: hidden;
-    margin: 0;
+  display: flex;
+  list-style: none;
+  padding-left: 1%;
+  padding-top: 3%;
+  overflow: hidden;
+  margin: 0;
 }
 
 #saveImage{
-  width: 15%;
+width: 15%;
 }
 
 .interactItem{
-    position: relative;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 28%;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 28%;
 }
 
 #comment, #share, #save{
-  width: 7vw;
-  margin-right: 5%;
+width: 7vw;
+margin-right: 5%;
 }
 
 #commentImage{
-  position: relative;
-  margin-left: 7%;
-  width: 20%;
+position: relative;
+margin-left: 7%;
+width: 20%;
 }
 
 #account{
-  width: 10%;
+width: 10%;
 }
 
 #info{
-  width: 60%;
+width: 60%;
 }
 
 #follow{
-  width: 10%;
+width: 10%;
 }
 
 #other{
-  position: relative;
-  left: 10%;
-  width: 6%;
+position: relative;
+left: 10%;
+width: 6%;
 }
 
 .followButton{
-    font-size: 80%;
-    cursor: pointer;
-    padding: 10%;
-    top: 25%;
-    border-radius: 15px;
-    border-style: none; 
-    background-color: #008AD8;
-    color: white;
-    font-size: 90%;
-    font-family:  Arial, Helvetica, sans-serif;
-    position: relative;
-    left: 100%;
-    font-weight: bolder;
+  font-size: 80%;
+  cursor: pointer;
+  padding: 10%;
+  top: 25%;
+  border-radius: 15px;
+  border-style: none; 
+  background-color: #008AD8;
+  color: white;
+  font-size: 90%;
+  font-family:  Arial, Helvetica, sans-serif;
+  position: relative;
+  left: 100%;
+  font-weight: bolder;
 }
 
 .postContainerHome, .postContainer{
-    border: none;
-    cursor: default;
-    appearance: none;
-    background-color: inherit;
-    width: 60vw;
-    display: block;
-    left: 15%;
-   position: relative;
-   text-decoration: none;
-   color: black;
+  border: none;
+  cursor: default;
+  appearance: none;
+  background-color: inherit;
+  width: 60vw;
+  display: block;
+  left: 15%;
+ position: relative;
+ text-decoration: none;
+ color: black;
 
 }
 
 .postContainerHome:hover{
-  outline: 1px solid black;
+outline: 1px solid black;
 }
 
 #accountImg {
-    border-radius: 50%;
-    width: 100%;
+  border-radius: 50%;
+  width: 100%;
 }
 .description {
-    display: block;
-    word-wrap: break-word;
+  display: block;
+  word-wrap: break-word;
 }
 
 .interactButton {
-    font-size: 60%;
-    display: flex;
-    margin-top: 1%;
-    border: none;
-    cursor: pointer;
-    appearance: none;
-    font-weight: bolder;
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    border-radius: 15px;
-    position: relative;
-    height: 100%;
-    background-color: rgb(224, 224, 224);
-  }
-
-  #accountButton:hover{
-    cursor: pointer;
-  }
-  .text{
-    display: inline;
-    margin-left: 25%;
-  }
-
-
-
-  #otherButton{
-    top: 25%;
-    position: relative;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 20px;
-    background-color: inherit;
-    left: 80%;
-  }
-
-  #otherImage{
-    width: 100%;
-    padding-top: 30%;
-  }
-
-  #otherButton:hover{
-    background-color: rgb(224, 224, 224);
-    
+  font-size: 60%;
+  display: flex;
+  margin-top: 1%;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  font-weight: bolder;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  border-radius: 15px;
+  position: relative;
+  height: 100%;
+  background-color: rgb(224, 224, 224);
 }
-  .interactButton:hover{
-    background-color: rgb(206, 206, 206);
-    
+
+#accountButton:hover{
+  cursor: pointer;
+}
+.text{
+  display: inline;
+  margin-left: 25%;
+}
+
+
+
+#otherButton{
+  top: 25%;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 20px;
+  background-color: inherit;
+  left: 80%;
+}
+
+#otherImage{
+  width: 100%;
+  padding-top: 30%;
+}
+
+#otherButton:hover{
+  background-color: rgb(224, 224, 224);
+  
+}
+.interactButton:hover{
+  background-color: rgb(206, 206, 206);
+  
 }
 
 .column1{
-    
-    width:5vw;
-    left: -100%;
-    grid-column: 1;
-    position: relative;
-    display: block;
+  
+  width:5vw;
+  left: -100%;
+  grid-column: 1;
+  position: relative;
+  display: block;
 }
 
 .column2{
-    right: 3%;
-    grid-column: 2;
-    position: relative;
-    display: block;
+  right: 3%;
+  grid-column: 2;
+  position: relative;
+  display: block;
 }
 .post{
-  margin-top: 2%;
-  background-color: white;
-    margin-top: 4%;
-    display: grid;
-    padding-bottom: 1%;
-    padding-top: 1%;
-    margin-bottom: 0px;
-    width: 55vw;
-    font-family: Arial, Helvetica, sans-serif;
-    border-left: 5vw solid #f7f6f6;
-    outline: 1px solid darkgray;
+margin-top: 2%;
+background-color: white;
+  margin-top: 4%;
+  display: grid;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  margin-bottom: 0px;
+  width: 55vw;
+  font-family: Arial, Helvetica, sans-serif;
+  border-left: 5vw solid #f7f6f6;
+  outline: 1px solid darkgray;
 }
 
 .votes {
-  margin-left: auto;
-  margin-right: auto;
-    width: 30px; /* Set a width if you like */
-  }
+margin-left: auto;
+margin-right: auto;
+  width: 30px; /* Set a width if you like */
+}
 
-  .arrowButton{
-    cursor: pointer;
-    border:none;
-    background-color: inherit;
-  }
-  .arrowButton:hover{
-    background-color: lightgray;
-  }
+.arrowButton{
+  cursor: pointer;
+  border:none;
+  background-color: inherit;
+}
+.arrowButton:hover{
+  background-color: lightgray;
+}
 
-  #downArrow{
-    transform: rotate(180deg);
-  }
-  
-  .votes img {
-    width: 100%;
-    color: black;
-    display: block;
-  }
+#downArrow{
+  transform: rotate(180deg);
+}
+
+.votes img {
+  width: 100%;
+  color: black;
+  display: block;
+}
 
 .title{
-    padding-left: 1%;
-    padding-right: 1%;
-    font-weight: 520;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-weight: 520;
 }
 
 #postInfo{
@@ -218,76 +218,76 @@ font-weight:lighter;
 }
 
 #accountButton{
-  position: relative;
-  top: 15%;
-  background-color: inherit;
-  border: none;
-  padding-top: 5%;
-  border-radius: 50%;
+position: relative;
+top: 15%;
+background-color: inherit;
+border: none;
+padding-top: 5%;
+border-radius: 50%;
 }
 
 hr{
-    border-top: lightgrey;
-    width: 100%;
+  border-top: lightgrey;
+  width: 100%;
 }
 
 .followButton:hover {
-    background-color: #19ABFF; 
-  }
+  background-color: #19ABFF; 
+}
 
 .visual{
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 .gradientTextContainer{
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  overflow-y: scroll;
-  padding-left: 1%;
-  padding-right: 1%;
+-webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+overflow-y: scroll;
+padding-left: 1%;
+padding-right: 1%;
 }     
 
 .textContainer{
-  padding-left: 1%;
-  padding-right: 1%;
+padding-left: 1%;
+padding-right: 1%;
 }
 
 #modalContainer{
-  display: none;
-  z-index: 1;
-  left: 25vw;
-  position: fixed;
-  width: 35vw;
-  overflow: auto;
-  background-color: white;
-  border-left: .5rem solid #008AD8 ;
-  border-top: .1rem solid black;
-  border-bottom: .1rem solid black;
-  border-right: .1rem solid black;
-  font-size: 100%;
-  top: 80%;
+display: none;
+z-index: 1;
+left: 25vw;
+position: fixed;
+width: 35vw;
+overflow: auto;
+background-color: white;
+border-left: .5rem solid #008AD8 ;
+border-top: .1rem solid black;
+border-bottom: .1rem solid black;
+border-right: .1rem solid black;
+font-size: 100%;
+top: 80%;
 }
 
 #alertMessage{
-  position: relative;
-  top: -.75vw;
-  margin: 1%;
+position: relative;
+top: -.75vw;
+margin: 1%;
 }
 
 
 
 #modalImage{
-  position: relative;
-  top: 1vw;
-  margin-right: 5%;
-  width: 8%;
+position: relative;
+top: 1vw;
+margin-right: 5%;
+width: 8%;
 }
 #modal{
-  display: flex;
+display: flex;
 }
 
 
