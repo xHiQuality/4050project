@@ -1,4 +1,5 @@
 .menuBar{
+    display: flex;
     list-style: none;
     margin: 0;
     padding: 1%;
@@ -6,59 +7,91 @@
 }
 
 .interactBar{
-    display: inline-block;
+    display: flex;
     list-style: none;
-    padding-bottom: 10px;
+    padding-left: 1%;
+    padding-top: 3%;
     overflow: hidden;
     margin: 0;
 }
 
-.interactItem{
-    position: absolute;
-    display: inline;
-    width: 15%;
+#saveImage{
+  width: 15%;
 }
 
-li {
-    float: left;
+.interactItem{
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 28%;
+}
+
+#comment, #share, #save{
+  width: 7vw;
+  margin-right: 5%;
+}
+
+#commentImage{
+  position: relative;
+  margin-left: 7%;
+  width: 20%;
+}
+
+#account{
+  width: 10%;
+}
+
+#info{
+  width: 60%;
+}
+
+#follow{
+  width: 10%;
+}
+
+#other{
+  position: relative;
+  left: 10%;
+  width: 6%;
 }
 
 .followButton{
-    padding: 1%;
+    font-size: 80%;
+    cursor: pointer;
+    padding: 10%;
+    top: 25%;
     border-radius: 15px;
     border-style: none; 
     background-color: #008AD8;
     color: white;
     font-size: 90%;
     font-family:  Arial, Helvetica, sans-serif;
-    position: absolute;
-    right: 3%;
+    position: relative;
+    left: 100%;
     font-weight: bolder;
-    width: 8%;
 }
-.postbutton{
+
+.postContainerHome, .postContainer{
     border: none;
-    cursor: pointer;
+    cursor: default;
     appearance: none;
     background-color: inherit;
-    width: 50%;
+    width: 60vw;
     display: block;
+    left: 15%;
    position: relative;
-  margin-left: auto;
-  margin-right: auto;
+   text-decoration: none;
+   color: black;
+
 }
-.menuItem{
-    position: relative;
-    top: 10px;
-    display: inline;
-    padding: 5px;
-    
+
+.postContainerHome:hover{
+  outline: 1px solid black;
 }
+
 #accountImg {
-    display: inline ;
-    padding: 5px;
     border-radius: 50%;
-    width: 40px;
+    width: 100%;
 }
 .description {
     display: block;
@@ -66,59 +99,49 @@ li {
 }
 
 .interactButton {
+    font-size: 60%;
+    display: flex;
     margin-top: 1%;
     border: none;
     cursor: pointer;
     appearance: none;
-    background-color: inherit;
-    width: 12%;
+    font-weight: bolder;
+    text-decoration: none;
+    color: black;
+    width: 100%;
     border-radius: 15px;
-    position: absolute;
-    height: 40px;
+    position: relative;
+    height: 100%;
     background-color: rgb(224, 224, 224);
   }
 
-  .accountButton:hover{
-    background-color: rgb(222, 222, 222);
+  #accountButton:hover{
+    cursor: pointer;
   }
   .text{
     display: inline;
     margin-left: 25%;
   }
 
-  #comment{
-    left: 1.5%;
-  }
 
-  #share{
-    left: 15.5%;
-  }
 
-  #save{
-    left: 29.5%;
-  }
-
-  #other{
+  #otherButton{
+    top: 25%;
+    position: relative;
     border: none;
     cursor: pointer;
-    appearance: none;
-    width: 5%;
-    border-radius: 15px;
-    position: absolute;
-    height: 30px;
+    width: 100%;
+    border-radius: 20px;
     background-color: inherit;
-    left: 98%;
+    left: 80%;
   }
 
   #otherImage{
-    position: absolute;
-    left: 30%;
-    top: 25%;
-    display: inline;
-    width: 40%;
+    width: 100%;
+    padding-top: 30%;
   }
 
-  #other:hover{
+  #otherButton:hover{
     background-color: rgb(224, 224, 224);
     
 }
@@ -128,33 +151,42 @@ li {
 }
 
 .column1{
-    left: -115%;
+    
+    width:5vw;
+    left: -100%;
     grid-column: 1;
     position: relative;
     display: block;
 }
 
 .column2{
-    right: 30px;
+    right: 3%;
     grid-column: 2;
     position: relative;
     display: block;
 }
 .post{
+  margin-top: 2%;
+  background-color: white;
+    margin-top: 4%;
     display: grid;
-    padding-bottom: 6%;
+    padding-bottom: 1%;
     padding-top: 1%;
-    width: 100%;
+    margin-bottom: 0px;
+    width: 55vw;
     font-family: Arial, Helvetica, sans-serif;
-    border-left: 40px solid #f7f6f6;
+    border-left: 5vw solid #f7f6f6;
     outline: 1px solid darkgray;
 }
 
 .votes {
+  margin-left: auto;
+  margin-right: auto;
     width: 30px; /* Set a width if you like */
   }
 
   .arrowButton{
+    cursor: pointer;
     border:none;
     background-color: inherit;
   }
@@ -179,16 +211,19 @@ li {
 }
 
 #postInfo{
+float: left;
 font-size: 100%;
-position: relative;
-right: -10%;
 color: rgb(174, 174, 174);
 font-weight:lighter;
 }
-.accountButton{
-    background-color: inherit;
-    border: none;
-    border-radius: 50%;
+
+#accountButton{
+  position: relative;
+  top: 15%;
+  background-color: inherit;
+  border: none;
+  padding-top: 5%;
+  border-radius: 50%;
 }
 
 hr{
@@ -208,10 +243,54 @@ hr{
 }
 
 
-.textContainer{
+.gradientTextContainer{
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   overflow-y: scroll;
   padding-left: 1%;
   padding-right: 1%;
 }     
+
+.textContainer{
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+#modalContainer{
+  display: none;
+  z-index: 1;
+  left: 25vw;
+  position: fixed;
+  width: 35vw;
+  overflow: auto;
+  background-color: white;
+  border-left: .5rem solid #008AD8 ;
+  border-top: .1rem solid black;
+  border-bottom: .1rem solid black;
+  border-right: .1rem solid black;
+  font-size: 100%;
+  top: 80%;
+}
+
+#alertMessage{
+  position: relative;
+  top: -.75vw;
+  margin: 1%;
+}
+
+
+
+#modalImage{
+  position: relative;
+  top: 1vw;
+  margin-right: 5%;
+  width: 8%;
+}
+#modal{
+  display: flex;
+}
+
+
+
+
+

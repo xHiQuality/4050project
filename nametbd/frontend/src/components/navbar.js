@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/navbar.css';
+import { Link} from 'react-router-dom';
 
 function navbar(props) {
     
@@ -8,6 +9,7 @@ return (
   <div className = "container">
     <nav className="navbar">
       <div className="navbar-logo">
+      <Link id = "homeLink" to={`/`}>
         <button className = "logo-button">
         <img
           src="https://1000logos.net/wp-content/uploads/2017/05/Reddit-Logo.png"
@@ -15,6 +17,7 @@ return (
           className="logo"
         />
         </button>
+        </Link>
       </div>
       <div className="bar">
         <input

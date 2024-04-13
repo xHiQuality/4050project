@@ -4,32 +4,26 @@
 }
 
 .search-icon{
-    position: absolute;
-    right: 67%;
-    top: 5.5%;
-    width: 2%;
-    height: 2%;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: relative;
+    width: 1.5%;
+    left: -15.5%;
 }
 .message-icon{
     width: 60%;
-}
-
-.navButton{
-    border:none;
-    border-radius: 25px;
-    background-color: inherit;
 }
 
 .navButton:hover{
     background-color: rgb(224, 224, 224);
 }
 
-#message-button, #create-button, #login-button{
+.navButton{
     position: relative;
-    width: 10%;
-    top: 4%;
-    font-size: 15px;
-    height: 30px;
+    width: 5rem;
+    border:none;
+    border-radius: 25px;
+    background-color: inherit;
 }
 
 #message-button{
@@ -37,19 +31,25 @@
 }
 
 #create-button{
-    left: -9%;
+    left: -8%;
 }
 
 #login-button{
     background-color: #008AD8;
     color: white;
-    font-size: 13px;
+    font-size: 15px;
+    padding: .5%;
     font-weight: bolder;
-    left: -7%;
+    left: -5%;
+}
+
+#homeLink{
+    display: block;
+    width: 100%;
 }
 
 .logo-button{
-    width: 10%;
+    width: 100%;
     border: none;
     background-color: inherit;
     cursor: pointer;
@@ -63,20 +63,23 @@
     width: 60%;
 }
 
+.navbar-logo{
+    width: 10rem;
+}
+
 #navbar-search-field{
-    top: 4%;
-    padding-left: 4%;
-    position: absolute;
+    padding: 1% 1% 1% 4%;
+    position: relative;
     left: 30%;
     border-radius: 25px;
     display: inline;
     width: 42%;
-    height: 4.5%;
     border: none;
     background-color: rgb(224, 224, 224);
 }
+
 .bar{
-    display: flex;
+width: 100%
 }
 
 .navbar {
@@ -89,7 +92,7 @@
   }
 
   hr{
-    width: 90%;
+    width: 100%;
     margin: 0%;
     border-top-color: black;
   }

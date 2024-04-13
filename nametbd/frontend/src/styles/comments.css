@@ -1,0 +1,73 @@
+.bar, .commentVotes{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 1%;
+    overflow: hidden;
+}
+
+.comment{
+background-color: white;
+padding-bottom: 1%;
+width: 60vw;
+display: block;
+left: 15%;
+position: relative;
+}
+
+#commentAccount{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 5%;
+}
+#upComment, #downComment{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 2.5vw;
+}
+#commentAccountButton, .commentArrowButton{
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+.commentContainer{
+    margin-left: 3%;
+}
+#commentVotesInfo{
+    font-size: 70%;
+    font-weight: bold;
+}
+.commentArrowButton:hover{
+    background-color: rgb(206, 206, 206);
+}
+
+#commentUpArrow{
+    width: 100%;
+}
+
+#commentDownArrow{
+    top: 1%;
+    transform: rotate(180deg);
+    width: 100%;
+}
+
+#commentAccountImg {
+    border-radius: 50%;
+    width: 100%;
+}
+
+#commentAuthor{
+    margin-left: .5rem;
+    width: 25%;
+}
+
+#commentTime{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 30%;
+}
+
+#commentTimeInfo{
+    font-weight: lighter;
+}
