@@ -55,12 +55,16 @@ export default function homepage() {
     }
   ]
 
+  for(var i = 0; i < posts.length; i++){
+    posts[i].home = "yes";
+  }
+
   return (
     <div className="home">
       <Navbar></Navbar>
       <div className="Page">
         {posts.map((posts, index) => {
-          return <Post className = "post" item={posts} />;
+          return <Post className = "posts" key = {index} item={posts} />;
         })}
       </div>
   </div>

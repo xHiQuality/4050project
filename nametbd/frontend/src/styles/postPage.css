@@ -1,0 +1,74 @@
+hr{
+    width: 100%;
+    margin: 0%;
+    border-top-color: black;
+  }
+
+  .commentsContainer{
+    margin-bottom: 0%;
+  }
+  
+
+  #commentAs{
+    position: relative;
+    left: 10%;
+    font-weight: bolder;
+    font-size: 70%;
+  }
+
+  .container{
+    margin-bottom: 0px;
+  }
+
+
+.commmentBoxContainer{
+  padding-top: 5%;
+  border-top: .05rem solid black;
+  position: relative;
+  width: 60vw;
+  display: block;
+  left: 15%;
+  background-color: white;
+}
+
+.commmentBox{
+  resize:vertical;
+  padding: 2vw 2vw 1vw 2vw;
+  width: 44vw;
+  border: 0px;
+  height: 15vw;
+}
+
+.commmentBox::placeholder{
+  color: rgb(147, 147, 147);
+}
+
+#commentForm{
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  background-color: rgb(233, 233, 233);
+  border: .125vw solid black;
+}
+
+.commentButton{
+  font-weight: bold;
+  position: relative;
+  left: 78%;
+  width: 20%;
+  border-radius: 15px;
+  color: white;
+  background-color:  #008AD8;
+  border-style: none; 
+  cursor: pointer;
+  height: 80%;
+}
+
+.commentButton:hover{
+  background-color:  #19ABFF;
+}
+
+#commentButtonContainer{
+  padding-top: 1%;
+  height: 2rem;
+}
