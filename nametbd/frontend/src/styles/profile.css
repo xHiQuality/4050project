@@ -3,24 +3,14 @@
     margin: auto;
     padding: 20px;
     background-color: #c6d6dc;
-    border-radius: 5px;    
-    border: 2px outset lightgray;
     opacity: 0.8;
-}
-
-.profileHeader {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    padding: 25px 50px 25px 50px;       /*top right bottom left*/
-    height: 350px;
-    width: 50%;
-    font: Verdana;
 }
 
 .editProfileButton {
     float: left;
     text-align: center;
+    padding: 2px 2px 2px 2px;
+    margin: 3px;
     background-color: rgb(32, 42, 192);
     color: #cbd0d4;
     border: 2px;
@@ -28,25 +18,48 @@
 }
 
 .editProfileButton:hover {
-    background-color: rgb(69, 33, 154);
+    background-color: blue;
     border: 2.5px;
 }
 
+.shareProfileButton {
+    text-align: center;
+    padding: 2px 2px 2px 2px;
+    margin: 3px;
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 2px;
+    border-radius: 3.5px;
+}
+
+.shareProfileButton:hover {
+    background-color: blue;
+    border: 2.5px;
+}
 .profileInfo {
-    display: flexbox;
+    display: grid;
     align-items: center;
+    position: absolute;
+}
+
+.profileHeader {
+    display: block;
+    align-items: center;
+    margin: auto;
+    padding: 15px 30px 15px 30px;       /*top right bottom left*/
+    font: Verdana;
+    height: 200px;
 }
 
 .profilePicture {
-    width: 100px;
-    height: 100px;
-    margin: 2px;
+    width: 150px;
+    height: 150px;
+
     border-radius: 50%;
     border: 1px solid black;
-    padding: 0.5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+
+    position: sticky;
+
 }
 
 .profilePicture:hover {
@@ -55,7 +68,7 @@
 }
 
 .userDetails {
-    display: block;
+    display: grid;
     word-wrap: break-word;
 }
 
@@ -67,16 +80,4 @@
     font-family: Arial, Helvetica, sans-serif;
     border-left: 40px solid #f7f6f6;
     outline: 1px solid darkgray;
-}
-
-.shareProfileButton {
-    background-color: rgb(32, 42, 192);
-    color: #cbd0d4;
-    border: 2px;
-    border-radius: 3.5px;
-}
-
-.shareProfileButton:hover {
-    background-color: blue;
-    border: 2.5px;
 }

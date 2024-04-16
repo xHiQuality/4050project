@@ -11,13 +11,16 @@ function profile() {
             <div className="userProfile">
                 <div className="profileHeader">
                     <div className="profilePicture">
-                        <img src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="User/Profile Picture"/>
+                        <img src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" width = "150" height = "150px" alt="User/Profile Picture"/>
                     </div>
                     <h2>user-name</h2>
-                    <button className="editProfileButton">Edit Profile</button>
                 </div>
+                
+                <button className ="editProfileButton">Edit Profile</button>
+                <button className = "shareProfileButton">Share Profile</button>
+                
 
-                <div className="profileInfo">
+                <div className="profileInfo">  
                     <div className="userDetails">
                         <p>Username: Mrudang Patel</p>
                         <p>Email: myp2k2nd@gmail.com</p>
@@ -34,7 +37,6 @@ function profile() {
 
                 </div>
 
-                <button className = "shareProfileButton">Share Profile</button>
             </div>
         </div>
     );
