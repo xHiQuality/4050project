@@ -1,7 +1,10 @@
 import './App.css';
+import  React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './components/homepage';
 import PostPage from './components/postPage'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Profile from './components/profile';
 
 function App() {
 
@@ -19,6 +22,7 @@ function App() {
               path="/postPage"
               element={<PostPage />} // TODO change state
             />
+            <Route path="/profile" element = {<Profile/>}/>
           </Routes>
         </div>
       </Router>

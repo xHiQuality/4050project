@@ -1,6 +1,7 @@
 import '../styles/homepage.css';
 import Post from './post.js';
 import Navbar from './navbar.js';
+import Profile from './profile.js';
 
 export default function homepage() {
 
