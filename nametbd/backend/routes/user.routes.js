@@ -28,7 +28,5 @@ module.exports = app => {
   router.post("/check", users.checkExistence);
 
 
-
-
     app.use('/api/users', router);
 }
