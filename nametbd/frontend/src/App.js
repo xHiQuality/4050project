@@ -2,8 +2,7 @@ import './App.css';
 import  React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './components/homepage';
-import PostPage from './components/postPage'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PostPage from './components/postPage';
 import Profile from './components/profile';
 
 function App() {

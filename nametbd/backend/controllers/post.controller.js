@@ -27,7 +27,9 @@ exports.create = (req,res) => {
         tag: req.body.tag,
         header: req.body.header,
         author: req.body.author,
-        content: req.body.content
+        content: req.body.content,
+        votes: req.body.votes,
+        image: req.body.image
       };
       
       //Save Post in the database
