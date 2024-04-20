@@ -1,6 +1,28 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+// const axios = require('axios');
+
+
+// Route to check if a user exists
+exports.checkUserExistence = (req, res) => {
+  const { username } = req.body;
+  console.log("check");
+
+  // Use Sequelize's findOne method to check if the user exists
+  User.findOne({ where: { username } })
+    .then(user => {
+      if (user) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    })
+    .catch(error => {
+      console.error('Error checking user existence:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
 
 //Create and Save a new User
 exports.create = (req,res) => {

@@ -24,9 +24,8 @@ module.exports = app => {
   // Delete all users
   router.delete("/", users.deleteAll);
 
-
-
-
+  // Add route to check user existence
+  router.post("/check", users.checkExistence);
 
 
     app.use('/api/users', router);
