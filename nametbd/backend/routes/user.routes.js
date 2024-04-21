@@ -9,6 +9,8 @@ module.exports = app => {
     
     router.get("/", users.findAll);
 
+    router.get("/", users.findByUsername);
+
      // Retrieve all published users
 //   router.get("/published", users.findAllPublished);
 
@@ -25,7 +27,7 @@ module.exports = app => {
   router.delete("/", users.deleteAll);
 
   // Add route to check user existence
-  router.post("/check", users.checkExistence);
+  //router.post("/check", users.checkExistence);
 
 
     app.use('/api/users', router);
