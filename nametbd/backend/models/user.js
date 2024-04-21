@@ -15,6 +15,10 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING(20),
             allowNull: false, // Specify NOT NULL constraint
+        },
+        accountImage: {
+            type: Sequelize.STRING(250),
+            allowNull: false,
         }
     }, {
         timestamps: false

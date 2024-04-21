@@ -1,6 +1,28 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+// const axios = require('axios');
+
+
+// Route to check if a user exists
+exports.checkUserExistence = (req, res) => {
+  const { username } = req.body;
+  console.log("check");
+
+  // Use Sequelize's findOne method to check if the user exists
+  User.findOne({ where: { username } })
+    .then(user => {
+      if (user) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    })
+    .catch(error => {
+      console.error('Error checking user existence:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
 
 //Create and Save a new User
 exports.create = (req,res) => {
@@ -20,7 +42,8 @@ exports.create = (req,res) => {
   const user = {
     iduser: req.body.iduser,
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    accountImage: req.body.accountImage
   };
   
   //Save User in the database
@@ -52,6 +75,22 @@ exports.findAll = (req,res) => {
             })
         })
 };
+
+exports.findByUsername = (req, res) => {
+  const username = req.query.username;  // Get username from query string
+  var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
+
+  User.findAll({ where: condition })
+      .then(data => {
+          res.send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message: err.message || "Some error occurred while retrieving users."
+          });
+      });
+};
+
 
 //Find a single User with an id
 exports.findOne = (req,res) => {

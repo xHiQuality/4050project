@@ -1,6 +1,7 @@
 import '../styles/homepage.css';
 import Post from './post.js';
 import Navbar from './navbar.js';
+import Profile from './profile.js';
 
 export default function homepage() {
 
@@ -55,12 +56,16 @@ export default function homepage() {
     }
   ]
 
+  for(var i = 0; i < posts.length; i++){
+    posts[i].home = "yes";
+  }
+
   return (
     <div className="home">
       <Navbar></Navbar>
       <div className="Page">
         {posts.map((posts, index) => {
-          return <Post className = "post" item={posts} />;
+          return <Post className = "posts" key = {index} item={posts} />;
         })}
       </div>
   </div>

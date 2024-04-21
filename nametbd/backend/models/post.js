@@ -27,6 +27,14 @@ module.exports = (sequelize, Sequelize) => {
         content: {
             type: Sequelize.STRING(250), // Set max length to 250 characters
             allowNull: false
+        },
+        votes: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        image: {
+            type: Sequelize.STRING(200),
+            allowNull: false
         }
     }, {
         timestamps: false
