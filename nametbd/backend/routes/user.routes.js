@@ -9,7 +9,7 @@ module.exports = app => {
     
     router.get("/", users.findAll);
 
-    router.get("/", users.findByUsername);
+   //router.get("/:username", users.findByUsername);
 
      // Retrieve all published users
 //   router.get("/published", users.findAllPublished);
