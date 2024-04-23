@@ -6,6 +6,8 @@ module.exports = app => {
     // Create a new post
     router.post("/", comments.create);
 
+    // Retrieve a single comment with postID
+    router.get("/", comments.findByPostID);
     
     router.get("/", comments.findAll);
 

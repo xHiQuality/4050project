@@ -1,32 +1,69 @@
 // ./components/post.jsx
-
-import React from 'react';
 import '../styles/post.css';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 //import {Link} from 'react-router-dom';
 
-function post(props) {
+
+
+function Post(props) {
   const post = props.item;
 
-  if(post.text && post.home === "yes" && post.text.length > 937) {
-    post.text = post.text.substring(0, 937);
+  const [user, setUser] = useState(null);
+  const [comment, setComment] = useState(null);
 
-    if (post.text.substr(post.text.length - 1, 1) !== ""){
-      var lastIndex = post.text.lastIndexOf(" ");
-      post.text = post.text.substring(0, lastIndex);
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/users', {
+    params: {
+      username: post.name
+    }
+  }).then((res) => {
+    setUser(res.data);
+  }).catch((err) => {
+    console.log('Error from Post');
+  });
+  }, [post.name]);
+  
+  useEffect(() => {
+    axios.get(`http://localhost:3001/api/comments/`, {
+      params: {
+        postID: post.idpost
+      }
+  }).then((res) => {
+    setComment(res.data);
+  }).catch((err) => {
+    console.log('Error from Post');
+  });
+  }, [post.idpost]);
+
+  // Check if user is null or undefined before accessing its properties
+  if (!user || !comment) {
+    return <div>Loading...</div>; 
+  }
+
+
+
+  if(post.content && post.home === "yes" && post.content.length > 937) {
+    post.content = post.content.substring(0, 937);
+
+    if (post.content.substr(post.content.length - 1, 1) !== ""){
+      var lastIndex = post.content.lastIndexOf(" ");
+      post.content = post.content.substring(0, lastIndex);
     }
     }
+ 
 
     const handlePostClick = () => {
 
       if (post.home === "yes"){
-        window.location.href = '/postPage';
+        window.location.href = `/postPage/${post.idpost}`;
       }
     };
 
     const handleAccountClick = (event) => {
       //stop from going to post page
       event.stopPropagation();
-      window.location.href = '/profile';
+      window.location.href = `/profile/${user[0].iduser}`;
     };
 
     const handleFollowClick = (event) => {
@@ -45,8 +82,8 @@ function post(props) {
       //stop parent's click event handler
       event.stopPropagation();
 
-      //TODO:get method to get specif post url from backend, but for now
-      var existingPostUrl = "http://localhost:3000/";
+      //TODO:get method to get specif post url from backend
+      var existingPostUrl = `http://localhost:3000/postPage/${post.idpost}`;
       navigator.clipboard.writeText(existingPostUrl);
 
       const modal = document.getElementById('modalContainer');
@@ -79,7 +116,7 @@ function post(props) {
 
        //doesn't work on diff page, not sure why
 
-       window.location.replace('/postPage#commentAnchor');
+       window.location.replace(`postPage/${post.idpost}#commentAnchor`);
 
     }
     
@@ -90,30 +127,29 @@ function post(props) {
     <div className = "column1">
         <div className="votes">
           <button className='arrowButton' onClick={handleUpClick}>
-            <img id = "upArrow" alt = "vote up" src = "https://www.pngkit.com/png/full/21-217915_curved-white-arrow-png-white-up-arrow-icon.png"/>
+            <img id = "upArrow" alt = "vote up" src = "https://vectorified.com/images/white-arrow-icon-png-15.png"/>
             </button>
-            <p>{post.votes}</p>
+            <p id = "votesNum">{post.votes}</p>
             <button className='arrowButton' onClick={handleDownClick}>
-            <img id = "downArrow" alt = "vote down" src = "https://www.pngkit.com/png/full/21-217915_curved-white-arrow-png-white-up-arrow-icon.png"/>
+            <img id = "downArrow" alt = "vote down" src = "https://vectorified.com/images/white-arrow-icon-png-15.png"/>
             </button>
         </div>
       </div>
       <div className = "column2">
         <ul className="menuBar">
-            <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={post.accountImage} alt="account"/></button></li>
-            <li id = "info"><h5 id = "postInfo">. Posted by {post.author} {post.time}</h5></li>
+            <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={user[0].accountImage} alt="account"/></button></li>
+            <li id = "info"><h5 id = "postInfo"> <span style={{fontWeight: "bold", color: "rgb(71, 71, 71)"}}>{post.tag}</span> . Posted by {post.author}</h5></li>
             <li id = "follow"><button className = "followButton" onClick={handleFollowClick}> Follow</button></li>
-            <li id  = "other"><button id = "otherButton"><img id = "otherImage" src={"https://icon-library.com/images/three-dots-icon/three-dots-icon-26.jpg"} alt="other"/></button></li>
         </ul>
       <hr></hr>
       <div className="description">
-        <h3 className="title">{post.title}</h3>
-        {post.text ? post.home === "yes" ? <div className="gradientTextContainer"><p> {post.text} </p> </div> : <div className="textContainer"><p> {post.text} </p> </div>  : null}
-        {post.img ? <img className="visual" src={post.img} alt='post'/> : null}
+        <h3 className="title">{post.header}</h3>
+        {post.content ? post.home === "yes" ? <div className="gradientTextContainer"><p> {post.content} </p> </div> : <div className="textContainer"><p> {post.content} </p> </div>  : null}
+        {post.image ? <img className="visual" src={post.image} alt='post'/> : null}
         {post.vid ? <video className="visual" src={post.vid}/> : null}
       </div>
       <ul className="interactBar">
-            <li id = "comment"><button onClick={handleCommentClick} className = "interactButton"><img id = "commentImage" className = "interactItem" src={"https://icon-library.com/images/comment-icon-transparent/comment-icon-transparent-12.jpg"} alt="comments"/><p className = "text">{post.commentsNum}</p></button></li>
+            <li id = "comment"><button onClick={handleCommentClick} className = "interactButton"><img id = "commentImage" className = "interactItem" src={"https://icon-library.com/images/comment-icon-transparent/comment-icon-transparent-12.jpg"} alt="comments"/><p className = "text">{comment[0].votes}</p></button></li>
             <li id = "share"><button className = "interactButton" onClick={handleShareClick}><img className = "interactItem" src={"https://www.pngall.com/wp-content/uploads/2/Share-PNG-File.png"} alt="share"/> <p  className = "text">Share</p> </button></li>
             <li id = "save"><button className = "interactButton" onClick={handleSaveClick}><img id = "saveImage" className = "interactItem" src={"https://clipground.com/images/bookmark-icon-clipart-1.png"} alt="save"/> <p  className = "text">Save</p> </button></li>
       </ul>
@@ -130,4 +166,4 @@ function post(props) {
   )
 }
 
-export default post;
+export default Post;

@@ -18,7 +18,7 @@ db.sequelize.sync()
 // });
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended: true}));
 // });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 require("./routes/user.routes")(app);
 require("./routes/post.routes")(app);

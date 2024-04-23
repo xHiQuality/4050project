@@ -18,10 +18,10 @@ function App() {
             />
             <Route
               exact
-              path="/postPage"
+              path="/postPage/:postid"
               element={<PostPage />} // TODO change state
             />
-            <Route path="/profile" element = {<Profile/>}/>
+            <Route path="/profile/:userId" element = {<Profile/>}/>
           </Routes>
         </div>
       </Router>
