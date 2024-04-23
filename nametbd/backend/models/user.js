@@ -17,8 +17,8 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false, // Specify NOT NULL constraint
         },
         accountImage: {
-            type: Sequelize.STRING(250),
-            allowNull: false,
+            type: Sequelize.STRING(500),
+            allowNull: true,
         }
     }, {
         timestamps: false

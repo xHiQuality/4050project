@@ -76,20 +76,20 @@ exports.findAll = (req,res) => {
         })
 };
 
-exports.findByUsername = (req, res) => {
-  const username = req.query.username;  // Get username from query string
-  var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
-
-  User.findAll({ where: condition })
-      .then(data => {
-          res.send(data);
-      })
-      .catch(err => {
-          res.status(500).send({
-              message: err.message || "Some error occurred while retrieving users."
-          });
-      });
+exports.findUser = async (req, res) => {
+  try {
+      const username = req.params.username;
+      const user = await User.findOne({ username: username });
+      if (user) {
+          res.status(200).send("Username exists");
+      } else {
+          res.status(404).send("Username not found");
+      }
+  } catch (error) {
+      res.status(500).send("Server error");
+  }
 };
+
 
 
 //Find a single User with an id
