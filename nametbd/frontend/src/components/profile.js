@@ -88,19 +88,21 @@ function Profile() {
                         <h2>{userData.username}</h2>
                     )}
 
+                    <h2>mrudang</h2>
+
+                    {editingUsername ? (
+                        <div className="editButtons">
+                            <button className="saveButton" onClick={handleSaveClick}>Save</button>
+                            <button className="cancelButton" onClick={handleCancelClick}>Cancel</button>
+                        </div> ) : (
+                        <div className="profileButtons">
+                            <button className="editProfileButton" onClick={handleEditClick}>Edit Profile</button>
+                            <button className="shareProfileButton">Share Profile</button>
+                        </div>
+                    )}
                     
                 </div>
                 
-                {editingUsername ? (
-                    <div className="editButtons">
-                        <button className="saveButton" onClick={handleSaveClick}>Save</button>
-                        <button className="cancelButton" onClick={handleCancelClick}>Cancel</button>
-                    </div> ) : (
-                    <div className="profileButtons">
-                        <button className="editProfileButton" onClick={handleEditClick}>Edit Profile</button>
-                        <button className="shareProfileButton">Share Profile</button>
-                    </div>
-                )}
 
                 
                 <div className="profileInfo">  
@@ -112,8 +114,8 @@ function Profile() {
                     </div>
 
                     <div className="Posts">
-                        <button className="createPostButton">Create Post</button>
                         <h3>My Posts:</h3>
+                        <button className="createPostButton">Create Post</button>
                         {userPosts.map((posts, index) => (
                             <Post className = "posts" key={index} item={posts}/>
                         ))}
