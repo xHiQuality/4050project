@@ -1,9 +1,30 @@
 import '../styles/comments.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 
-export default function comments(props) {
+export default function Comments(props) {
 
     const comment = props.item;
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/api/users', {
+        params: {
+          username: comment.commentAuthor
+        }
+      }).then((res) => {
+        setUser(res.data);
+      }).catch((err) => {
+        console.log('Error from Post');
+      });
+      }, [comment.commentAuthor]);
+
+      if (!user) {
+        return <div>Loading...</div>; 
+      }
+      
+      console.log(user);
 
     const handleUpClick = (event) => {
         // My TODO: will update backend. And vote number wiil update.
@@ -17,17 +38,16 @@ export default function comments(props) {
     return (
     <div className='comment'>
     <ul className = "bar">
-        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile`}><img id = "commentAccountImg" src={comment.accountImage} alt="account"/></Link></li>
-        <li id = "commentAuthor"><h5 id = "commentAuthorInfo">{comment.author}</h5></li>
-        <li id = "commentTime"><h5 id = "commentTimeInfo">{comment.time}</h5></li>
+        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile`}><img id = "commentAccountImg" src={user[0].accountImage} alt="account"/></Link></li>
+        <li id = "commentAuthor"><h5 id = "commentAuthorInfo">{comment.commentAuthor}</h5></li>
     </ul>
     <div className='commentContainer'>
-        <p> {comment.comment}</p>
+        <p> {comment.content}</p>
     </div>
     <ul className="commentVotes">
         <li id = "upComment">
           <button className='commentArrowButton' onClick={handleUpClick}>
-            <img id = "commentUpArrow" alt = "vote up" src = "https://www.pngkit.com/png/full/21-217915_curved-white-arrow-png-white-up-arrow-icon.png"/>
+            <img id = "commentUpArrow" alt = "vote up" src = "https://vectorified.com/images/white-arrow-icon-png-15.png"/>
             </button>
         </li>
         <li id ="commentVotesInfo">
@@ -35,7 +55,7 @@ export default function comments(props) {
         </li>
         <li id = "downComment">
             <button className='commentArrowButton' onClick={handleDownClick}>
-            <img id = "commentDownArrow" alt = "vote down" src = "https://www.pngkit.com/png/full/21-217915_curved-white-arrow-png-white-up-arrow-icon.png"/>
+            <img id = "commentDownArrow" alt = "vote down" src = "https://vectorified.com/images/white-arrow-icon-png-15.png"/>
             </button>
         </li>
     </ul>

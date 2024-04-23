@@ -18,7 +18,7 @@ function App() {
             />
             <Route
               exact
-              path="/postPage"
+              path="/postPage/:postid"
               element={<PostPage />} // TODO change state
             />
             <Route 

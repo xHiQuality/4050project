@@ -76,6 +76,23 @@ exports.create = (req,res) => {
         })
     };
 
+    //Find a single Comment with an post id
+    exports.findByPostID = (req,res) => {
+      const postID = req.query.postID;
+  
+      var condition = postID ? { postID: { [Op.like]: `%${postID}%` } } : null;
+
+      Comment.findAll({ where: condition })
+      .then(data => {
+          res.send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message: err.message || "Some error occurred while retrieving users."
+          });
+      });
+    };
+
     exports.update = (req, res) => {
         const commentID = req.params.id;
       

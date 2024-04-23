@@ -23,7 +23,7 @@ position: relative;
 #upComment, #downComment{
     margin-top: auto;
     margin-bottom: auto;
-    width: 2.5vw;
+    width: 3vw;
 }
 #commentAccountButton, .commentArrowButton{
     width: 100%;
@@ -47,7 +47,8 @@ position: relative;
 }
 
 #commentDownArrow{
-    top: 1%;
+    position: relative;
+    top: .2vw;
     transform: rotate(180deg);
     width: 100%;
 }
@@ -60,12 +61,6 @@ position: relative;
 #commentAuthor{
     margin-left: .5rem;
     width: 25%;
-}
-
-#commentTime{
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 30%;
 }
 
 #commentTimeInfo{

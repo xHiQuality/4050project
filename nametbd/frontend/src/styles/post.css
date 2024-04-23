@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+#votesNum{
+  text-align: center;
+}
+
 .interactBar{
   display: flex;
   list-style: none;
@@ -46,28 +50,21 @@ width: 60%;
 }
 
 #follow{
-width: 10%;
-}
-
-#other{
-position: relative;
-left: 10%;
-width: 6%;
+width: 20%;
 }
 
 .followButton{
-  font-size: 80%;
   cursor: pointer;
-  padding: 10%;
-  top: 25%;
-  border-radius: 15px;
+  padding: 6%;
+  top: .8rem;
+  border-radius: 25px;
   border-style: none; 
   background-color: #008AD8;
   color: white;
   font-size: 90%;
   font-family:  Arial, Helvetica, sans-serif;
   position: relative;
-  left: 100%;
+  left: 8vw;
   font-weight: bolder;
 }
 
@@ -123,59 +120,34 @@ outline: 1px solid black;
   margin-left: 25%;
 }
 
-
-
-#otherButton{
-  top: 25%;
-  position: relative;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 20px;
-  background-color: inherit;
-  left: 80%;
-}
-
-#otherImage{
-  width: 100%;
-  padding-top: 30%;
-}
-
-#otherButton:hover{
-  background-color: rgb(224, 224, 224);
-  
-}
 .interactButton:hover{
   background-color: rgb(206, 206, 206);
   
 }
 
 .column1{
-  
-  width:5vw;
-  left: -100%;
   grid-column: 1;
   position: relative;
   display: block;
+  background-color: #f7f6f6;
 }
 
 .column2{
-  right: 3%;
   grid-column: 2;
   position: relative;
   display: block;
+  padding: 0% 0% 1% 2%;
 }
 .post{
-margin-top: 2%;
-background-color: white;
+  margin-top: 2%;
+  background-color: white;
   margin-top: 4%;
   display: grid;
-  padding-bottom: 1%;
   padding-top: 1%;
+  grid-template-columns: 5vw 55vw;
   margin-bottom: 0px;
-  width: 55vw;
+  width: 60vw;
   font-family: Arial, Helvetica, sans-serif;
-  border-left: 5vw solid #f7f6f6;
   outline: 1px solid darkgray;
 }
 
@@ -186,6 +158,7 @@ margin-right: auto;
 }
 
 .arrowButton{
+  padding: 0%;
   cursor: pointer;
   border:none;
   background-color: inherit;
