@@ -11,6 +11,17 @@
 .editProfileButton {
     float: left;
     text-align: center;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 3px;
+    border-radius: 3.5px;
+=======
+>>>>>>> Stashed changes
     padding: 8px 16px;
     margin: 8px;
     background-color: rgb(32, 42, 192);
@@ -19,15 +30,30 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
+>>>>>>> Stashed changes
 }
 
 .editProfileButton:hover {
     background-color: blue;
-    border: 2.5px;
+    border: 3.5px;
 }
 
 .shareProfileButton {
     text-align: center;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 3px;
+    border-radius: 3.5px;
+=======
+>>>>>>> Stashed changes
     padding: 8px 16px;
     margin: 8px;
     background-color: rgb(32, 42, 192);
@@ -36,12 +62,17 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
+>>>>>>> Stashed changes
 }
 
 .shareProfileButton:hover {
     background-color: blue;
-    border: 2.5px;
+    border: 3.5px;
 }
+
 .profileInfo {
     display: grid;
     align-items: center;
@@ -51,14 +82,31 @@
 }
 
 .profileHeader {
+<<<<<<< Updated upstream
     /*display: block;*/
+=======
+<<<<<<< HEAD
+    display: flex;
+=======
+    /*display: block;*/
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
+>>>>>>> Stashed changes
     align-items: center;
+    justify-content: space-between;
     margin: auto;
     padding: 15px 30px;       /*top right bottom left*/
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    font: Verdana;
+    border-radius: 10px 10px 10px 10px;
+=======
+>>>>>>> Stashed changes
     background-color: #3d58a0;
     color: #fff;
     font-family: Arial, sans-serif;
     height: 200px;
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
 }
 
 .profilePicture {
@@ -67,8 +115,16 @@
     border-radius: 50%;
     border: 2px solid black;
     object-fit: cover;
+<<<<<<< Updated upstream
     position: sticky;
     transition: transform 0.3s ease;
+=======
+<<<<<<< HEAD
+=======
+    position: sticky;
+    transition: transform 0.3s ease;
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
+>>>>>>> Stashed changes
 }
 
 .profilePicture:hover {
@@ -77,17 +133,48 @@
 }
 
 .userDetails {
+<<<<<<< Updated upstream
     /*display: grid;
     word-wrap: break-word;*/
     font-size: 16px;
+=======
+<<<<<<< HEAD
+    display: grid;
+    word-wrap: break-word;
+    margin-top: 20px;
+=======
+    /*display: grid;
+    word-wrap: break-word;*/
+    font-size: 16px;
+>>>>>>> 0f565a770deb682ea297610ac50250b118075385
+>>>>>>> Stashed changes
 }
 
 .Posts {
     display: grid;
+    margin-top: 20px;
+    border-radius: 10px 10px 10px 10px;
     padding-bottom: 6%;
     padding-top: 1%;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     border-left: 40px solid #f7f6f6;
     outline: 1px solid darkgray;
+}
+
+.createPostButton {
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 3px;
+    border-radius: 3.5px;
+    cursor: pointer;
+}
+
+.createPostButton:hover {
+    background-color: blue;
+    border: 3.5px;
 }
