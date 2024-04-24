@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import '../styles/Authmodal.css'; // Import your CSS file for styling
+import user from '../../../backend/models/user';
 
 function AuthModal() {
   const [isOpen, setIsOpen] = useState(true);
@@ -27,25 +28,36 @@ function AuthModal() {
 
     try {
       // Send a POST request to your backend endpoint to check if the user exists
-      const response = await axios.post('/api/users/check', { username });
-      setUserExists(response.data.exists);
-
+      axios.get("http://localhost:8080/api/users/username?username=" + username)
+      .then(data => {
+        if (data) {
+          setIsSignUp(false);
+        } else {
+          setIsSignUp(true);
+        }
+      });
       // If user exists and it's a sign-up attempt, don't proceed with sign-up
-      if (isSignUp && response.data.exists) {
-        // You can show an error message here or handle it as needed
-        return;
+      if (isSignUp) {
+        const newUser = {username, password, accountImage: ""};
+        await axios.post("http://localhost:8080/api/users/signup", newUser);
       }
+      const loginRes = await axios.post("http://localhost:8080/api/users/login", {username, password});
+      setUserData({
+        user: loginRes.data.user,
+        token: loginRes.data.token
+      });
+      localStorage.setItem("auth-token", loginRes.data.token);
 
       // Perform authentication logic here
       console.log("Username:", username);
       console.log("Password:", password);
-
+    } catch (error) {
+      console.log('Axios failed in Authmodal.js', error);
+    } finally {
       // Reset input fields
       setUsername('');
       setPassword('');
       closeModal();
-    } catch (error) {
-      console.error('Error checking user existence:', error);
     }
   };
 
