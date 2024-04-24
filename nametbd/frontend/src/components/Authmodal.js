@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import '../styles/Authmodal.css'; // Import your CSS file for styling
-import user from '../../../backend/models/user';
+import { UserDataContext } from '../App';
 
 function AuthModal() {
+  const {setUserData} = useContext(UserDataContext);
   const [isOpen, setIsOpen] = useState(true);
   const [isSignUp, setIsSignUp] = useState(false); // State to track sign-up mode
   const [userExists, setUserExists] = useState(false); // State to track user existence
