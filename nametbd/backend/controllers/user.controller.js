@@ -1,6 +1,8 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+const jwt = require("jsonwebtoken");
+const auth = require('../middleware/auth')
 // const axios = require('axios');
 
 
@@ -91,6 +93,112 @@ exports.findByUsername = (req, res) => {
       });
 };
 
+exports.signup = (req, res) => {
+  try {
+    if (!req.body.username) {
+      return res.status(400).send({
+          message: "Content can not be empty!"
+      });
+      return;
+  } else if (!req.body.password) {
+      return res.status(400).send({
+          message: "Content can not be empty!"
+      });
+      return;
+  }
+  
+    const user = {
+      username: req.body.username,
+      password: req.boddy.password,
+      accountImage: req.body.accountImage
+    };
+    User.create({username: user.username, password: user.password, accountImage: user.accountImage})
+    .then(data => {
+      res.send(data);
+    })
+  } catch (err) {
+    res.status(400).send({
+      message: err.message || "Error occured in Signup"
+    });
+  }
+};
+
+exports.login = (req, res) => {
+  try {
+    const{username, password} = req.body;
+    const user = User.findOne({where: {username: username}});
+    if (!user) {
+      return res.status(400)
+        .send({message: "User with that username does not exist"});
+    } // if
+
+    const isMatch = (password == user.password);
+
+    if (!isMatch) {
+      return res.status(400).send({message: "Incorrect password"});
+    } // if
+
+    const token = jwt.sign({id: user.iduser}, "passwordKey");
+    res.json({token, user: {id: iduser, username: username}});
+  } catch (err) {
+    console.log("backend failed in login ", err);
+    res.status(400).send({message: "error in login"});
+  }
+};
+
+exports.logout = (req, res) => {
+  try {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          res.status(400).send("Unable to logout")
+        } else {
+          res.send("Logout successful")
+        }
+      });
+    } else {
+      res.end();
+    }
+  } catch (err) {
+    console.log("backend failed in logout ", err);
+    res.status(400).send({message: "Error in logout"});
+  }
+};
+
+
+exports.validate = (req,res) => {
+  try {
+    const token = req.header("x-auth-token");
+    if (!token) {
+      return res.json(false);
+    }
+    const verified = jwt.verify(token, "passwordKey");
+    if (!verified) {
+      return res.json(false);
+    }
+    const user = User.find(verified.id);
+    if (!user) {
+      return res.json(false);
+    }
+    return res.json(true);
+  } catch (err) {
+    console.log("Backend failed in verifying token validity ", err);
+    res.status(400).send({message: err.messgae || "error verifying token"});
+  }
+};
+
+exports.authenticate = (req, res) => {
+  try {
+    const user = User.findByPk(req.user);
+    res.send({
+      username: user.username,
+      id: user.id
+    });
+  } catch {
+    console.log("Backend failed in getting user credentials ", err);
+    res.status(400).send({message: err.message || "Error in authentication"});
+  }
+};
 
 //Find a single User with an id
 exports.findOne = (req,res) => {

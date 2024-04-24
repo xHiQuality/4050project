@@ -1,15 +1,25 @@
 module.exports = app => {
     const users = require("../controllers/user.controller.js");
+    const auth = require("../middleware/auth.js");
 
     var router = require("express").Router();
 
     // Create a new User
     router.post("/", users.create);
 
-    
+    router.post("/login", users.login);
+
+    router.delete("/logout", users.logout);
+
+    router.post("/signup", users.signup);
+
+    router.post("/validate", users.validate);
+
     router.get("/", users.findAll);
 
    router.get("/:username", users.findByUsername);
+
+   router.get("/auth", auth.auth, users.authenticate);
 
      // Retrieve all published users
 //   router.get("/published", users.findAllPublished);

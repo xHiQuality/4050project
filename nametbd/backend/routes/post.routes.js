@@ -15,6 +15,12 @@ module.exports = app => {
   // Retrieve a single post with id
   router.get("/:id", posts.findOne);
 
+  // Increment the vote count with id
+  router.put("/upvote/:id", posts.upvote);
+
+  // Decrement the vote count with id
+  router.put("/downvote/:id", posts.downvote);
+
   // Update a post with id
   router.put("/:id", posts.update);
 

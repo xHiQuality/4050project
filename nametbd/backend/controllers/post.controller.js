@@ -83,6 +83,51 @@ exports.create = (req,res) => {
         })
     };
     
+
+    exports.upvote = (req, res) => {
+        const idpost = req.params.id;
+
+        Post.increment(
+          'votes', {by: 1, where: {idpost: idpost}}
+        )
+        .then(data => {
+          if (data) {
+            res.send({message: "Post was updated successfully."});
+          } else {
+            res.send({
+              message: `Cannot increment votes for post with id=${idpost}. Maybe Post was not found`
+            })
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Error incrementing votes for post with id="+idpost
+          })
+        })
+    };
+
+    exports.downvote = (req, res) => {
+      const idpost = req.params.id;
+
+      Post.decrement(
+        'votes', {by: 1, where: {idpost: idpost}}
+      )
+      .then(data => {
+        if (data) {
+          res.send({message: "Votes decremeneted successfully."});
+        } else {
+          res.send({
+            message: `Cannot decrement votes for post with id=${idpost}. Maybe POst was not found`
+          })
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error decrementing votes for post with id="+idpost
+        })
+      })
+    };
+
     // Update a Post by the id in the request
     exports.update = (req, res) => {
       const idpost = req.params.id;

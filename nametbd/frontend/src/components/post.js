@@ -2,6 +2,7 @@
 
 import React from 'react';
 import '../styles/post.css';
+import axios from 'axios';
 //import {Link} from 'react-router-dom';
 
 function post(props) {
@@ -62,12 +63,24 @@ function post(props) {
     const handleUpClick = (event) => {
       //stop parent's click event handler
       event.stopPropagation();
+      try {
+        const response = axios.put('http://localhost:8080/api/posts/upvote/' + post.id);
+        console.log(response);
+      } catch (err) {
+        console.log("Error in post upvote axios");
+      } // try-catch
       // My TODO: will update backend. And vote number wiil update.
     }
 
     const handleDownClick = (event) => {
       //stop parent's click event handler
       event.stopPropagation();
+      try {
+        const response = axios.put('http://localhost:8080/api/posts/downvote/' + post.id);
+        console.log(response);
+      } catch (err) {
+        console.log("Error in post downvote axios");
+      } // try-catch
       // My TODO: will update backend. And vote number wiil update.
     }
 
