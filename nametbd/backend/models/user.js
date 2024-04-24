@@ -19,6 +19,14 @@ module.exports = (sequelize, Sequelize) => {
         accountImage: {
             type: Sequelize.STRING(500),
             allowNull: true,
+        },
+        bio: {
+            type: Sequelize.STRING(250),
+            allowNull: true
+        },
+        email: {
+            type: Sequelize.STRING(50),
+            allowNull: false
         }
     }, {
         timestamps: false

@@ -45,7 +45,9 @@ exports.create = (req,res) => {
     iduser: req.body.iduser,
     username: req.body.username,
     password: req.body.password,
-    accountImage: req.body.accountImage
+    accountImage: req.body.accountImage,
+    bio: req.body.bio,
+    email: req.body.email
   };
   
   //Save User in the database
@@ -82,7 +84,7 @@ exports.findUser = async (req, res) => {
   try {
       const username = req.params.username;
       const user = await User.findOne({ username: username });
-      if (user) {
+      if (user.username == username) {
           res.status(200).send("Username exists");
       } else {
           res.status(404).send("Username not found");

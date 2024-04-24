@@ -28,7 +28,7 @@ INSERT INTO users (username, email, password) VALUES
 
 
 INSERT INTO posts (author, header, content, tag, votes, image)
-SELECT username, CONCAT('Header for ', username), CONCAT('Post content by ', username), 'General', 0, 'https://imgs.search.brave.com/pZhBHQaHpxvMiN0XNOptdykSQKfT6hCg8zBK93QLZk8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdDMu/ZGVwb3NpdHBob3Rv/cy5jb20vMTEyMzM3/NDYvMTUxMTAvaS80/NTAvZGVwb3NpdHBo/b3Rvc18xNTExMDkw/NzItc3RvY2stcGhv/dG8tZ29sZGVuLXJl/dHJpZXZlci1kb2cu/anBn'
+SELECT username, CONCAT('Header for ', username), CONCAT('Post content by ', username), 'General', 0, 'https://tinyurl.com/2vp4xeay'
 FROM users;
 
 
