@@ -77,15 +77,6 @@ export default function Homepage() {
      posts[i].home = "yes";
    }
 
-  var item = {
-      header: 'What Should I Eat For Dinner?',
-      content: "I'm torn between pasta or pho'. Italian or Asian. Thoughts? jhhjbkjb jjbjbkj dbjkbdef jkbdjkbe jkbedkjfb jkebfk jbrjkfb rjbfjrbf jkbjke jbejr bfjrbj brfbj brjfbr",
-      image: "https://tse4.mm.bing.net/th?id=OIP.JKGWlAlIHdOM6DmypdCyzgHaEK&pid=Api&P=0&h=180",
-      tag: '@ 1 min ago',
-      author: "skycole768",
-      votes: 300
-  
-}
 
 //axios.post(`http://localhost:3001/api/posts`, item);
 

@@ -4,27 +4,33 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './components/homepage';
 import PostPage from './components/postPage';
 import Profile from './components/profile';
+import CreatePage from './components/createPage';
 
 function App() {
-
+  
   return (
-      <Router>
-        <div>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<Homepage />} // TODO change state
-            />
-            <Route
-              exact
-              path="/postPage/:postid"
-              element={<PostPage />} // TODO change state
-            />
-            <Route path="/profile/:userId" element = {<Profile/>}/>
-          </Routes>
-        </div>
-      </Router>
+    <Router>
+      <div>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Homepage />} // TODO change state
+          />
+          <Route
+            exact
+            path="/postPage/:postid"
+            element={<PostPage />} // TODO change state
+          />
+          <Route
+            path="/profile"
+            element = {<Profile/>}/>
+          <Route
+          path="/createPage"
+          element = {<CreatePage/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

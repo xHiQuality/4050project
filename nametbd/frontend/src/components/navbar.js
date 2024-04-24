@@ -39,22 +39,15 @@ return (
           style={{ cursor: 'pointer' }}
         />
       </div>
-      <button className = "navButton" id="message-button">
-        <img
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3216841/chat-circle-dots-icon-md.png"
-            alt="message box"
-            className="message-icon"
-            style={{ cursor: 'pointer' }}
-          />
-        </button>
-        <button className="navButton" id="create-button">
+        <Link to ='/createPage' className="navButton" id="create-button">
           <img
             src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-math-icon-download-icons-9.png"
             alt="create post"
             className="plus-icon"
             style={{ cursor: 'pointer' }}
           />
-        </button>
+          <p>Create</p>
+        </Link>
         
         {/* Button to toggle the Authmodel */}
         <button className="navButton" id="login-button" onClick={toggleAuthModal}>

@@ -4,14 +4,10 @@
 }
 
 .search-icon{
-    margin-top: auto;
-    margin-bottom: auto;
+    vertical-align: middle;
     position: relative;
     width: 1.5%;
     left: -15.5%;
-}
-.message-icon{
-    width: 60%;
 }
 
 .navButton:hover{
@@ -26,12 +22,16 @@
     background-color: inherit;
 }
 
-#message-button{
-    left: -10%;
-}
 
 #create-button{
-    left: -8%;
+    font-size: 1rem;
+    font-weight: 600;
+    width: fit-content;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    left: -11%;
+    padding-right: 1vw;
 }
 
 #login-button{
@@ -60,7 +60,11 @@
   }
 
 .plus-icon{
-    width: 60%;
+    margin-bottom: auto;
+    margin-top: auto;
+    width: 3vw;
+    height: 3vw;
+    margin-right: 1vw;
 }
 
 .navbar-logo{
@@ -72,7 +76,6 @@
     position: relative;
     left: 30%;
     border-radius: 25px;
-    display: inline;
     width: 42%;
     border: none;
     background-color: rgb(224, 224, 224);

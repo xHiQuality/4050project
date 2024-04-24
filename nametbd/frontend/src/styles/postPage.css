@@ -24,6 +24,7 @@ hr{
 .commmentBoxContainer{
   padding-top: 5%;
   border-top: .05rem solid black;
+  padding-bottom: 2%;
   position: relative;
   width: 60vw;
   display: block;

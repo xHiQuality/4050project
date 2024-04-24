@@ -37,7 +37,7 @@ export default function Comments(props) {
 
     return (
     <div className='comment'>
-    <ul className = "bar">
+    <ul className = "commentBar">
         <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile`}><img id = "commentAccountImg" src={user[0].accountImage} alt="account"/></Link></li>
         <li id = "commentAuthor"><h5 id = "commentAuthorInfo">{comment.commentAuthor}</h5></li>
     </ul>
