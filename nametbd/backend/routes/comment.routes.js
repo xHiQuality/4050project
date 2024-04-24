@@ -11,8 +11,8 @@ module.exports = app => {
     
     router.get("/", comments.findAll);
 
-     // Retrieve all published comments
-//   router.get("/published", comments.findAllPublished);
+    // Retrieve all published comments
+    //router.get("/published", comments.findAllPublished);
 
   // Retrieve a single post with id
   router.get("/:id", comments.findOne);

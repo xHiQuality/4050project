@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function PostPage(props) {
 
   const [post, setPost] = useState();
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState();
   const [commentData, setCommentData] = useState('');
 
   const handleChange = (e) => {
@@ -42,7 +42,7 @@ export default function PostPage(props) {
     });
     }, [postid]);
   
-    // Check if user is null or undefined before accessing its properties
+    // Check if post is null or undefined before accessing its properties
     if (!post || !comments) {
       return <div>Loading...</div>; 
     }
@@ -96,11 +96,8 @@ export default function PostPage(props) {
 
      // Check if user is null or undefined before accessing its properties
 
-    console.log(post);
-
       post.home = "no";
     
-
   //   const comments = [
   //       {
   //           comment: "Hello, I hate you.",
@@ -138,12 +135,12 @@ export default function PostPage(props) {
         <div className='commmentBoxContainer'>
         <p id = "commentAs">Comment as <Link to ={`/profile`} style = {{textDecoration: 'none'}}>userName(fill in)</Link> </p>  
           <form encType="text/plain" method="post" id = "commentForm" onSubmit={handleComment}>
-          <textarea placeholder="What are your thoughts?" className="commmentBox" onChange={handleChange}>
-          </textarea>
+          <textarea placeholder="What are your thoughts?" className="commmentBox" onChange={handleChange} required/>
           <div id = "commentButtonContainer">
           <input type="submit" className="commentButton" value="Comment"></input>
           </div>
          </form>
+         <div style = {{display: comments.length == 0 ? "block": "none", marginTop: "8%", paddingLeft: '10%'}}>Be the first to comment!</div>
         </div>
         <div id="commentAnchor" className = "commentsContainer">
         {comments.map((comment, index) => {

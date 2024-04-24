@@ -7,6 +7,7 @@ import React, {useEffect, useState} from 'react';
 
 
 function Post(props) {
+  var commentNum = 0;
   const post = props.item;
 
   const [user, setUser] = useState(null);
@@ -37,8 +38,12 @@ function Post(props) {
   }, [post.idpost]);
 
   // Check if user is null or undefined before accessing its properties
-  if (!user || !comment) {
+  if (!user ) {
     return <div>Loading...</div>; 
+  }
+
+  if (comment){
+    commentNum = comment.length;
   }
 
 
@@ -138,7 +143,7 @@ function Post(props) {
       <div className = "column2">
         <ul className="menuBar">
             <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={user[0].accountImage} alt="account"/></button></li>
-            <li id = "info"><h5 id = "postInfo"> <span style={{fontWeight: "bold", color: "rgb(71, 71, 71)"}}>{post.tag}</span> . Posted by {post.author}</h5></li>
+            <li id = "info"><h5 id = "postInfo"> <span style={{fontWeight: "bold", color: "rgb(71, 71, 71)"}}>@{post.tag}</span> . Posted by {post.author}</h5></li>
             <li id = "follow"><button className = "followButton" onClick={handleFollowClick}> Follow</button></li>
         </ul>
       <hr></hr>
@@ -149,9 +154,24 @@ function Post(props) {
         {post.vid ? <video className="visual" src={post.vid}/> : null}
       </div>
       <ul className="interactBar">
-            <li id = "comment"><button onClick={handleCommentClick} className = "interactButton"><img id = "commentImage" className = "interactItem" src={"https://icon-library.com/images/comment-icon-transparent/comment-icon-transparent-12.jpg"} alt="comments"/><p className = "text">{comment[0].votes}</p></button></li>
-            <li id = "share"><button className = "interactButton" onClick={handleShareClick}><img className = "interactItem" src={"https://www.pngall.com/wp-content/uploads/2/Share-PNG-File.png"} alt="share"/> <p  className = "text">Share</p> </button></li>
-            <li id = "save"><button className = "interactButton" onClick={handleSaveClick}><img id = "saveImage" className = "interactItem" src={"https://clipground.com/images/bookmark-icon-clipart-1.png"} alt="save"/> <p  className = "text">Save</p> </button></li>
+        <li id = "comment">
+          <button onClick={handleCommentClick} className = "interactButton" id = "postCommentButton" disabled={post.home === "no" ? true : false}>
+            <img id = "commentImage" className = "interactItem" src={"https://icon-library.com/images/comment-icon-transparent/comment-icon-transparent-12.jpg"} alt="comments"/>
+            <p className = "text">{commentNum}</p>
+          </button>
+        </li>
+        <li id = "share">
+          <button className = "interactButton" onClick={handleShareClick}>
+            <img className = "interactItem" src={"https://www.pngall.com/wp-content/uploads/2/Share-PNG-File.png"} alt="share"/> 
+            <p  className = "text">Share</p> 
+            </button>
+          </li>
+          <li id = "save">
+            <button className = "interactButton" onClick={handleSaveClick}>
+              <img id = "saveImage" className = "interactItem" src={"https://clipground.com/images/bookmark-icon-clipart-1.png"} alt="save"/> 
+              <p  className = "text">Save</p> 
+            </button>
+          </li>
       </ul>
 
       <div id="modal">

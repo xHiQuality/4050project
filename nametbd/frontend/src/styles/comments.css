@@ -1,4 +1,4 @@
-.bar, .commentVotes{
+.commentBar, .commentVotes{
     display: flex;
     list-style: none;
     margin: 0;

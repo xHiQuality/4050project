@@ -1,0 +1,109 @@
+.postPageContainer{
+    background-color: rgb(214, 221, 227);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#createPageHeader{
+    margin-left: 6%;
+}
+#bottomHr{
+    border-color: rgb(183, 183, 183);
+}
+
+.postForm{
+    border-radius: 15px;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    padding: 5% 0%;
+    background-color: white;
+}
+
+#tag{
+    padding: 1%;
+    border: none;
+    height: 1.5rem;
+}
+
+#atTagContainer{
+    padding: 1%;
+    background-color: white;
+    height: 1.5rem;
+    vertical-align: middle;
+}
+
+#atTag{
+    margin-top: 20%;
+}
+
+#header{
+    border: none;
+    width: 96%;
+    height: 2rem;
+}
+
+#content{
+    width: 96%;
+    position: relative;
+    resize: vertical;
+    border: none;
+    min-height: 8rem;
+}
+
+#url{
+    width: 96%;
+    border: none;
+    height: 1.5rem;
+}
+#contentWrapper{
+    min-height: 8rem;
+    border: none;
+}
+
+.formWrapper:focus-within{
+    border-radius: 2px;
+    outline: solid .1rem black;
+}
+
+.formWrapper input:focus, .formWrapper textarea:focus{
+    outline: none;
+}
+
+#middleHr{
+    border-color: rgb(183, 183, 183);
+    margin: 5% 0%;
+}
+
+.formWrapper input, .formWrapper textarea{
+    padding: 0px 2% 0px 2%;
+    width: 100%;
+}
+
+.formWrapper{
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: .1rem solid rgb(137, 136, 136);
+    margin-bottom: 2rem;
+    width: 90%;
+}
+
+
+.postButton:hover{
+    background-color: #19ABFF;
+}
+.postButton{
+    margin-top: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-radius: 25px;
+    background-color: #008AD8;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 550;
+    padding: 1% 3%;
+}
