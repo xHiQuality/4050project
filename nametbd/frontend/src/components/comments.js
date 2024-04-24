@@ -27,10 +27,22 @@ export default function Comments(props) {
       console.log(user);
 
     const handleUpClick = (event) => {
+        try {
+            const response = axios.put('http://localhost:8080/api/comments/upvote/' + comment.id);
+            console.log(response);
+          } catch (err) {
+            console.log("Error in comment upvote axios");
+          } // try-catch
         // My TODO: will update backend. And vote number wiil update.
       }
   
       const handleDownClick = (event) => {
+        try {
+            const response = axios.put('http://localhost:8080/api/comments/downvote/' + comment.id);
+            console.log(response);
+          } catch (err) {
+            console.log("Error in comment downvote axios");
+          } // try-catch
         // My TODO: will update backend. And vote number wiil update.
       }
   

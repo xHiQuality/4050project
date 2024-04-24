@@ -91,6 +91,53 @@ exports.create = (req,res) => {
               message: err.message || "Some error occurred while retrieving users."
           });
       });
+    }
+    exports.upvote = (req, res) => {
+      const commentID = req.params.id;
+
+      Comment.increment(
+        'votes', {by: 2, where: {commentID: commentID}}
+      )
+      .then(data => {
+        if (data) {
+          res.send({
+            message: "Comment votes incremented successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot increment votes on comment with ID=${commentID}. Maybe Comment was not found`
+          })
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error incrementing votes on comment with id="+commentID
+        })
+      })
+    };
+
+    exports.downvote = (req, res) => {
+      const commentID = req.params.id;
+
+      Comment.decrement(
+        'votes', {by: 2, where: {commentID: commentID}}
+      )
+      .then(data => {
+        if (data) {
+          res.send({
+            message: "Comment votes decremented successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot decrement votes on comment with ID=${commentID}. Maybe Comment was not found`
+          })
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error decrementing votes on comment with id="+commentID
+        })
+      })
     };
 
     exports.update = (req, res) => {

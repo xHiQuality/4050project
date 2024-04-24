@@ -14,6 +14,13 @@ module.exports = app => {
     // Retrieve all published comments
     //router.get("/published", comments.findAllPublished);
 
+// Increment comment votes with id 
+  router.put("/upvote/:id", comments.upvote);
+
+  // Decrement comment votes with id 
+  router.put("/downvote/:id", comments.downvote);
+
+
   // Retrieve a single post with id
   router.get("/:id", comments.findOne);
 
