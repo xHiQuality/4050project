@@ -27,9 +27,11 @@ export default function Comments(props) {
         userAccountImage = user[0].accountImage;
       }
 
+ 
     const handleUpClick = (event) => {
         try {
-            const response = axios.put('http://localhost:8080/api/comments/upvote/' + comment.id);
+            const response = axios.put('http://localhost:3001/api/comments/upvote/' + comment.commentID);
+            window.location.reload();
             console.log(response);
           } catch (err) {
             console.log("Error in comment upvote axios");
@@ -39,7 +41,8 @@ export default function Comments(props) {
   
       const handleDownClick = (event) => {
         try {
-            const response = axios.put('http://localhost:8080/api/comments/downvote/' + comment.id);
+            const response = axios.put('http://localhost:3001/api/comments/downvote/' + comment.commentID);
+            window.location.reload();
             console.log(response);
           } catch (err) {
             console.log("Error in comment downvote axios");
@@ -47,6 +50,7 @@ export default function Comments(props) {
         // My TODO: will update backend. And vote number wiil update.
       }
   
+
 
     return (
     <div className='comment'>

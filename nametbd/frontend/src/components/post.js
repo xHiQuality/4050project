@@ -111,6 +111,7 @@ function Post(props) {
       try {
         const response = axios.put('http://localhost:3001/api/posts/upvote/' + post.idpost);
         console.log(response);
+        window.location.reload();
       } catch (err) {
         console.log("Error in post upvote axios");
       } // try-catch
@@ -123,9 +124,11 @@ function Post(props) {
       try {
         const response = axios.put('http://localhost:3001/api/posts/downvote/' + post.idpost);
         console.log(response);
+        window.location.reload();
       } catch (err) {
         console.log("Error in post downvote axios");
       } // try-catch
+
       // My TODO: will update backend. And vote number wiil update.
     }
 

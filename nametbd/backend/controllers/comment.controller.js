@@ -96,7 +96,7 @@ exports.create = (req,res) => {
       const commentID = req.params.id;
 
       Comment.increment(
-        'votes', {by: 2, where: {commentID: commentID}}
+        'votes', {by: 1, where: {commentID: commentID}}
       )
       .then(data => {
         if (data) {
@@ -120,7 +120,7 @@ exports.create = (req,res) => {
       const commentID = req.params.id;
 
       Comment.decrement(
-        'votes', {by: 2, where: {commentID: commentID}}
+        'votes', {by: 1, where: {commentID: commentID}}
       )
       .then(data => {
         if (data) {
