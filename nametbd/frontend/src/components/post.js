@@ -133,7 +133,7 @@ function Post(props) {
 
        //doesn't work on diff page, not sure why
 
-       window.location.replace(`postPage/${post.idpost}#commentAnchor`);
+       window.location.replace(`postPage/${post.idpost}`);
 
     }
     

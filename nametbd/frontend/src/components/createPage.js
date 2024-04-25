@@ -5,7 +5,7 @@ import NavBar from './navbar';
 import axios from 'axios';
 
 
-function PostPage(props) {
+function CreatePage(props) {
 
     const navigate = useNavigate();
 
@@ -113,4 +113,4 @@ return (
   );
 }
 
-export default PostPage;
+export default CreatePage;

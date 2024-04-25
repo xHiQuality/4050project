@@ -45,8 +45,6 @@ exports.create = (req,res) => {
     iduser: req.body.iduser,
     username: req.body.username,
     password: req.body.password,
-    accountImage: req.body.accountImage,
-    bio: req.body.bio,
     email: req.body.email
   };
   
@@ -126,7 +124,10 @@ exports.signup = (req, res) => {
 
 exports.login = (req, res) => {
   try {
-    const{username, password} = req.body;
+    
+    const username = req.body.username;
+    const password = req.body.password;
+    
     const user = User.findOne({where: {username: username}});
     if (!user) {
       return res.status(400)
@@ -139,8 +140,8 @@ exports.login = (req, res) => {
       return res.status(400).send({message: "Incorrect password"});
     } // if
 
-    const token = jwt.sign({id: user.iduser}, "passwordKey");
-    res.json({token, user: {id: iduser, username: username}});
+    const token = jwt.sign({id: user.id}, "passwordKey");
+    res.json({token, user: {id: user.id, username: username}});
   } catch (err) {
     console.log("backend failed in login ", err);
     res.status(400).send({message: "error in login"});
