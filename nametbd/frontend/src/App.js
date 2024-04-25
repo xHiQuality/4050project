@@ -5,12 +5,13 @@ import Homepage from './components/homepage';
 import PostPage from './components/postPage';
 import Profile from './components/profile';
 import axios from 'axios';
+import CreatePage from './components/createPage';
 
 export const UserDataContext = createContext(null);
 
 function App() {
 
-  const [userData, setuserData] = useState({
+  const [userData, setUserData] = useState({
     token: undefined,
     user: undefined
   });
@@ -23,12 +24,12 @@ function App() {
         token = "";
       }
       try {
-        const tokenRes = await axios.post("http://localhost:8080/api/users/validate", null, {headers: {"x-auth-token": token}});
+        const tokenRes = await axios.get("http://localhost:3001/api/users/validate", null, {headers: {"x-auth-token": token}});
         if (tokenRes.data) {
-          const userRes = await axios.get("http://localhost:8080/api/users/auth/", 
+          const userRes = await axios.get("http://localhost:3001/api/users/auth/", 
             {headers: {"x-auth-token": token}});
           if (token !== userData.token) {
-            setuserData({
+            setUserData({
               token,
               user: userRes.data
             });
@@ -42,7 +43,7 @@ function App() {
   }, [userData]);
 
   return (
-    <UserDataContext.Provider value={{userData, setuserData}}>
+    <UserDataContext.Provider value={{userData, setUserData}}>
       <Router>
         <div>
           <Routes>
@@ -53,12 +54,16 @@ function App() {
             />
             <Route
               exact
-              path="/postPage"
+              path="/postPage/:postid"
               element={<PostPage />} // TODO change state
             />
             <Route 
-              path="/profile" 
+              path="/profile/:userid" 
               element = {<Profile/>}/>
+              <Route 
+              path='/createPage/'
+              element = {<CreatePage />}
+              />
           </Routes>
         </div>
       </Router>

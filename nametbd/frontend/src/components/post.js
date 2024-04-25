@@ -89,7 +89,7 @@ function Post(props) {
       event.stopPropagation();
 
       //TODO:get method to get specif post url from backend
-      var existingPostUrl = `http://localhost:3000/postPage/${post.idpost}`;
+      var existingPostUrl = `http://localhost:3001/postPage/${post.idpost}`;
       navigator.clipboard.writeText(existingPostUrl);
 
       const modal = document.getElementById('modalContainer');
@@ -106,7 +106,7 @@ function Post(props) {
       //stop parent's click event handler
       event.stopPropagation();
       try {
-        const response = axios.put('http://localhost:8080/api/posts/upvote/' + post.id);
+        const response = axios.put('http://localhost:3001/api/posts/upvote/' + post.idpost);
         console.log(response);
       } catch (err) {
         console.log("Error in post upvote axios");
@@ -118,7 +118,7 @@ function Post(props) {
       //stop parent's click event handler
       event.stopPropagation();
       try {
-        const response = axios.put('http://localhost:8080/api/posts/downvote/' + post.id);
+        const response = axios.put('http://localhost:3001/api/posts/downvote/' + post.idpost);
         console.log(response);
       } catch (err) {
         console.log("Error in post downvote axios");
@@ -134,7 +134,7 @@ function Post(props) {
 
        //doesn't work on diff page, not sure why
 
-       window.location.replace(`postPage/${post.idpost}#commentAnchor`);
+       window.location.replace(`postPage/${post.idpost}`);
 
     }
     

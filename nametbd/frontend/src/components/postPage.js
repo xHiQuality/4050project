@@ -2,7 +2,7 @@ import '../styles/postPage.css';
 import Comment from './comments.js';
 import Post from './post.js';
 import Navbar from './navbar.js';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, useLocation} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
@@ -11,6 +11,14 @@ export default function PostPage(props) {
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
   const [commentData, setCommentData] = useState('');
+
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   // Perform actions on route change
+  //   console.log('Current path:', location.pathname);
+  // }, [location]);
+
 
   const handleChange = (e) => {
     setCommentData(e.target.value);
@@ -53,7 +61,7 @@ export default function PostPage(props) {
       console.log(commentData);
 
       axios.post('http://localhost:3001/api/comments', {
-        commentAuthor: "sky",
+        commentAuthor: "admin",
         content: commentData,
         postID: postid,
         votes: 0
@@ -133,7 +141,7 @@ export default function PostPage(props) {
         <Post className = "pagePost" item = {post}/>
         </div>
         <div className='commmentBoxContainer'>
-        <p id = "commentAs">Comment as <Link to ={`/profile`} style = {{textDecoration: 'none'}}>userName(fill in)</Link> </p>  
+        <p id = "commentAs">Comment </p>  
           <form encType="text/plain" method="post" id = "commentForm" onSubmit={handleComment}>
           <textarea placeholder="What are your thoughts?" className="commmentBox" onChange={handleChange} required/>
           <div id = "commentButtonContainer">

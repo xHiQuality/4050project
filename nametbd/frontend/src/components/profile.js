@@ -5,6 +5,7 @@ import '../styles/navbar.css';
 import axios from 'axios';
 import Post from  './post.js';
 import homepage from './homepage.js';
+import { useParams } from 'react-router-dom';
 
 function Profile() {
     const [userData, setUserData] = useState({});
@@ -18,9 +19,11 @@ function Profile() {
         getUserPosts();
     }, []);
 
+    const username = useParams();
+
     const getUserData = async(username) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/users?author=${username}`);
+            const response = await axios.get(`http://localhost:8080/api/users/username/${username}`);
             const data = response.json();
             setUserData(data);
         } catch (error) {

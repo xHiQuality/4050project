@@ -45,7 +45,6 @@ exports.create = (req,res) => {
     iduser: req.body.iduser,
     username: req.body.username,
     password: req.body.password,
-    accountImage: req.body.accountImage
   };
   
   //Save User in the database
@@ -82,7 +81,7 @@ exports.findUser = async (req, res) => {
   try {
       const username = req.params.username;
       const user = await User.findOne({ username: username });
-      if (user) {
+      if (user.username == username) {
           res.status(200).send("Username exists");
       } else {
           res.status(404).send("Username not found");
@@ -124,8 +123,12 @@ exports.signup = (req, res) => {
 
 exports.login = (req, res) => {
   try {
-    const{username, password} = req.body;
-    const user = User.findOne({where: {username: username}});
+    
+    const username = req.body.username;
+    const password = req.body.password;
+    
+    const user = User.findOne({username: username});
+    console.log(user)
     if (!user) {
       return res.status(400)
         .send({message: "User with that username does not exist"});
@@ -137,8 +140,8 @@ exports.login = (req, res) => {
       return res.status(400).send({message: "Incorrect password"});
     } // if
 
-    const token = jwt.sign({id: user.iduser}, "passwordKey");
-    res.json({token, user: {id: iduser, username: username}});
+    const token = jwt.sign({id: user.id}, "passwordKey");
+    res.json({token, user: {id: user.id, username: username}});
   } catch (err) {
     console.log("backend failed in login ", err);
     res.status(400).send({message: "error in login"});

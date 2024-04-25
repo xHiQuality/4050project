@@ -7,13 +7,13 @@ module.exports = app => {
     // Create a new User
     router.post("/", users.create);
 
-    router.post("/login", users.login);
+    router.get("/login", users.login);
 
     router.delete("/logout", users.logout);
 
     router.post("/signup", users.signup);
 
-    router.post("/validate", users.validate);
+    router.get("/validate", users.validate);
 
     router.get("/", users.findAll);
 
