@@ -12,7 +12,8 @@ function Profile() {
     const [userPosts, setUserPosts] = useState([]);
     //const [newCreatePost, setNewCreatePost] = useState('');
     const [newUsername, setNewUsername] = useState('');
-    const [editingUsername, setEditingUsername] = useState(false);
+    const [editingUserProfile, setEditingUserProfile] = useState(false);
+    const [newBio, setNewBio] = useState('');
 
     useEffect (() => {
         getUserData();
@@ -23,7 +24,7 @@ function Profile() {
 
     const getUserData = async(username) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/users/username/${username}`);
+            const response = await axios.get(`http://localhost:3001/api/users?author=${username}`);
             const data = response.json();
             setUserData(data);
         } catch (error) {
@@ -33,7 +34,7 @@ function Profile() {
 
     const getUserPosts = async(author) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/posts?author=${author}`);
+            const response = await axios.get(`http://localhost:3001/api/posts?author=${author}`);
             const data = response.json();
             setUserPosts(data);
         } catch (error) {
@@ -51,25 +52,33 @@ function Profile() {
     };*/
 
     const handleEditClick = () => {
-        setEditingUsername(true);
-        setNewUsername(userData.username)
+        setEditingUserProfile(true);
+        setNewUsername(userData.username);
+        setNewBio(userData.bio);
     };
 
     const handleCancelClick = () => {
-        setEditingUsername(false);
+        setEditingUserProfile(false);
     };
 
     const handleSaveClick = async () => {
         try {
-            await axios.put(`http://localhost:8080/api/updateUsername`, {newUsername});
-            setUserData({...userData, username: newUsername});
-            setEditingUsername(false);
+            await axios.put(`http://localhost:3001/api/updateUserProfile`, {
+                username: newUsername,
+                bio: newBio
+            });
+            setUserData({...userData, username: newUsername, bio: newBio});
+            setEditingUserProfile(false);
         } catch (error) {
             console.error (error);
         }
     };
 
     const handleUsernameChange = (event) => {
+        setNewUsername(event.target.value);
+    };
+
+    const handleUserBioChange = (event) => {
         setNewUsername(event.target.value);
     };
 
@@ -82,18 +91,28 @@ function Profile() {
                         <img src={userData.accountImage} width = "150" height = "150px" alt="User/Profile Picture"/>
                     </div>
                     
-                    {editingUsername ? (
-                        <input
-                            type="text"
-                            value={newUsername}
-                            onChange={handleUsernameChange}
-                        />) : (
-                        <h2>{userData.username}</h2>
+                    {editingUserProfile ? (
+                        <div>
+                            <div className="userName">
+                                <h2>{userData.username}</h2>
+                                <h2>mrudang</h2>
+                                <p>Email: {userData.email}</p>
+                                <input type="text" value={newUsername} onChange={handleUsernameChange} placeholder="Enter new username"/>
+                            </div>
+                            <div className="userBio">
+                                <textarea type="text" value={newBio} onChange={handleUserBioChange} placeholder="Enter new bio..."/>
+                            </div>
+                        </div> ) : (
+                        <div>
+                            <h2>mrudang</h2>
+                            <h2>{userData.username}</h2>
+                            <p>Email: {userData.email}</p>
+                            <p>{userData.bio}</p>
+                        </div>
                     )}
 
-                    <h2>mrudang</h2>
 
-                    {editingUsername ? (
+                    {editingUserProfile ? (
                         <div className="editButtons">
                             <button className="saveButton" onClick={handleSaveClick}>Save</button>
                             <button className="cancelButton" onClick={handleCancelClick}>Cancel</button>

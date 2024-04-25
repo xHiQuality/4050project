@@ -8,6 +8,17 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+.userName input[type="text"],
+.userBio textarea {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    font-size: 16px;
+}
+
 .editProfileButton {
     text-align: center;
     padding: 10px 20px;
@@ -42,6 +53,23 @@
     border: 3.5px;
 }
 
+.saveButton, .cancelButton {
+    text-align: center;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: rgb(32, 42, 192);
+    color: #cbd0d4;
+    border: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton:hover, .cancelButton:hover {
+    background-color: blue;
+    border: 3.5px;
+}
+
 /*
 .profileInfo {
     display: grid;
@@ -56,7 +84,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;       /*top right bottom left*/
-    background-color: #94b0b8;
+    background-color: #98b3b9;
     font-family: Arial, sans-serif;
     border-radius: 10px 10px 10px 10px;
 }
