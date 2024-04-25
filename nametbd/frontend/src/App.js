@@ -24,9 +24,9 @@ function App() {
         token = "";
       }
       try {
-        const tokenRes = await axios.get("http://localhost:3000/api/users/validate", null, {headers: {"x-auth-token": token}});
+        const tokenRes = await axios.get("http://localhost:3001/api/users/validate", null, {headers: {"x-auth-token": token}});
         if (tokenRes.data) {
-          const userRes = await axios.get("http://localhost:3000/api/users/auth/", 
+          const userRes = await axios.get("http://localhost:3001/api/users/auth/", 
             {headers: {"x-auth-token": token}});
           if (token !== userData.token) {
             setUserData({

@@ -14,7 +14,7 @@ function CreatePage(props) {
       };
 
     const [post, setPost] = useState({
-        author: 'sky',
+        author: 'admin',
         content: '',
         tag: '',
         header: '',
@@ -29,7 +29,7 @@ function CreatePage(props) {
       .post(`http://localhost:3001/api/posts/`, post)
       .then((res) => {
         setPost({
-            author: 'sky',
+            author: 'admin',
             content: '',
             tag: '',
             header: '',
@@ -38,7 +38,7 @@ function CreatePage(props) {
         });
 
         // Push to /
-        navigate(`/profile`);
+        navigate(`/profile/:userid`);
       })
       .catch((err) => {
         console.log('Error in CreatePost!');

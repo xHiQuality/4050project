@@ -45,7 +45,6 @@ exports.create = (req,res) => {
     iduser: req.body.iduser,
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
   };
   
   //Save User in the database
@@ -128,7 +127,8 @@ exports.login = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     
-    const user = User.findOne({where: {username: username}});
+    const user = User.findOne({username: username});
+    console.log(user)
     if (!user) {
       return res.status(400)
         .send({message: "User with that username does not exist"});

@@ -38,33 +38,79 @@ function AuthModal() {
           setUserData({
             user: loginResponse.data.user,
             token: loginResponse.data.token
+            
           });
+          //console.log(loginResponse.data.token);
           localStorage.setItem("auth-token", loginResponse.data.token);
+          
           console.log("Logged in User:", username);
         }
-      } else {
-        // If user does not exist, create new user and then log them in
-        const newUser = { username, password, accountImage: "" };
-        const signUpResponse = await axios.post("http://localhost:3001/api/users/signup", newUser);
-        if (signUpResponse && signUpResponse.data) {
-          // Assuming successful sign-up returns login details
-          setUserData({
-            user: signUpResponse.data.user,
-            token: signUpResponse.data.token
-          });
-          localStorage.setItem("auth-token", signUpResponse.data.token);
-          console.log("Signed up and logged in User:", username);
-        }
       }
-    } catch (error) {
-      console.error('Axios failed in Authmodal.js', error);
-    } finally {
-      // Reset input fields and close modal
-      setUsername('');
-      setPassword('');
-      closeModal();
-    }
-  };
+     } catch {
+         try {
+          // If user does not exist, create new user and then log them in
+         const newUser = { username, password, accountImage: "" };
+         const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
+         if (signUpResponse && signUpResponse.data) {
+           // Assuming successful sign-up returns login details
+           setUserData({
+             user: signUpResponse.data.user,
+             token: signUpResponse.data.token
+           });
+           localStorage.setItem("auth-token", signUpResponse.data.token);
+           console.log("Signed up and logged in User:", username);
+         }
+         } catch (error) {
+          console.error('Axios failed in Authmodal.js', error);
+         }
+        
+       }
+       finally {
+        // Reset input fields and close modal
+        setUsername('');
+        setPassword('');
+        closeModal();
+      }
+     };  
+
+      
+  //     if (userExistsResponse && userExistsResponse.data) {
+  //       // If user exists, proceed to login
+  //       const loginResponse = await axios.get("http://localhost:3001/api/users/login", { username, password });
+  //       if (loginResponse && loginResponse.data) {
+  //         setUserData({
+  //           user: loginResponse.data.user,
+  //           token: loginResponse.data.token
+            
+  //         });
+  //         //console.log(loginResponse.data.token);
+  //         localStorage.setItem("auth-token", loginResponse.data.token);
+          
+  //         console.log("Logged in User:", username);
+  //       }
+  //     } else {
+  //       // If user does not exist, create new user and then log them in
+  //       const newUser = { username, password, accountImage: "" };
+  //       const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
+  //       if (signUpResponse && signUpResponse.data) {
+  //         // Assuming successful sign-up returns login details
+  //         setUserData({
+  //           user: signUpResponse.data.user,
+  //           token: signUpResponse.data.token
+  //         });
+  //         localStorage.setItem("auth-token", signUpResponse.data.token);
+  //         console.log("Signed up and logged in User:", username);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Axios failed in Authmodal.js', error);
+  //   } finally {
+  //     // Reset input fields and close modal
+  //     setUsername('');
+  //     setPassword('');
+  //     closeModal();
+  //   }
+  // };
 
 
   // const handleSubmit = async (event) => {
