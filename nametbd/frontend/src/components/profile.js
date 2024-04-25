@@ -23,7 +23,7 @@ function Profile() {
 
     const getUserData = async(username) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/users/username/${username}`);
+            const response = await axios.get(`http://localhost:3000/api/users/username/${username}`);
             const data = response.json();
             setUserData(data);
         } catch (error) {
@@ -33,7 +33,7 @@ function Profile() {
 
     const getUserPosts = async(author) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/posts?author=${author}`);
+            const response = await axios.get(`http://localhost:3000/api/posts?author=${author}`);
             const data = response.json();
             setUserPosts(data);
         } catch (error) {
