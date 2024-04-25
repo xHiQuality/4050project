@@ -153,8 +153,8 @@ export default function PostPage(props) {
         <Post className = "pagePost" item = {post}/>
         </div>
         <div className='commmentBoxContainer'>
-        <p id = "commentAs">Comment </p>  
-          <form encType="text/plain" method="post" id = "commentForm" onSubmit={handleComment}>
+        {/* <p id = "commentAs">Comment as </p>   */}
+          <form style = {{display: token ? 'block': 'none'}}encType="text/plain" method="post" id = "commentForm" onSubmit={handleComment}>
           <textarea placeholder="What are your thoughts?" className="commmentBox" onChange={handleChange} required/>
           <div id = "commentButtonContainer">
           <input type="submit" className="commentButton" value="Comment"></input>
