@@ -61,7 +61,7 @@ export default function PostPage(props) {
       console.log(commentData);
 
       axios.post('http://localhost:3001/api/comments', {
-        commentAuthor: "sky",
+        commentAuthor: "admin",
         content: commentData,
         postID: postid,
         votes: 0

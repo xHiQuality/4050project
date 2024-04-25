@@ -5,7 +5,7 @@ import NavBar from './navbar';
 import axios from 'axios';
 
 
-function CreatePage(props) {
+function PostPage(props) {
 
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ function CreatePage(props) {
         });
 
         // Push to /
-        navigate(`/profile/:userid`);
+        navigate(`/`);
       })
       .catch((err) => {
         console.log('Error in CreatePost!');
@@ -113,4 +113,4 @@ return (
   );
 }
 
-export default CreatePage;
+export default PostPage;
