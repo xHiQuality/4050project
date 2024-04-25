@@ -20,23 +20,21 @@ function Profile() {
         getUserPosts();
     }, []);
 
-    const username = useParams();
+    const {username} = useParams();
 
-    const getUserData = async(username) => {
+    const getUserData = async() => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/users?author=${username}`);
-            const data = response.json();
-            setUserData(data);
+            const response = await axios.get(`http://localhost:3001/api/users/id/${userData.iduser}`);
+            setUserData(response.data);
         } catch (error) {
             console.error(error);
         }
     };
 
-    const getUserPosts = async(author) => {
+    const getUserPosts = async() => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/posts?author=${author}`);
-            const data = response.json();
-            setUserPosts(data);
+            const response = await axios.get(`http://localhost:3001/api/posts?id=${userData.idpost}`);
+            setUserPosts(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -63,7 +61,7 @@ function Profile() {
 
     const handleSaveClick = async () => {
         try {
-            await axios.put(`http://localhost:3001/api/updateUserProfile`, {
+            await axios.put(`http://localhost:3001/api/users/id/${userData.iduser}`, {
                 username: newUsername,
                 bio: newBio
             });
@@ -138,7 +136,7 @@ function Profile() {
                     <div className="Posts">
                         <h3>My Posts:</h3>
                         <button className="createPostButton">Create Post</button>
-                        {userPosts.map((posts, index) => (
+                        {Array.isArray(userPosts) && userPosts.map((posts, index) => (
                             <Post className = "posts" key={index} item={posts}/>
                         ))}
                         
