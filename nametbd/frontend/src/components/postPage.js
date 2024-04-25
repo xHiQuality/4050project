@@ -140,7 +140,7 @@ export default function PostPage(props) {
           <input type="submit" className="commentButton" value="Comment"></input>
           </div>
          </form>
-         <div style = {{display: comments.length == 0 ? "block": "none", marginTop: "8%", paddingLeft: '10%'}}>Be the first to comment!</div>
+         <div style = {{display: comments.length === 0 ? "block": "none", marginTop: "8%", paddingLeft: '10%'}}>Be the first to comment!</div>
         </div>
         <div id="commentAnchor" className = "commentsContainer">
         {comments.map((comment, index) => {

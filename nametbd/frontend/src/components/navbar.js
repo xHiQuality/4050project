@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/navbar.css';
+import logo from '../images/DAWGIT.png';
 import { Link} from 'react-router-dom';
 import Authmodal from './Authmodal.js';
 
@@ -19,7 +20,7 @@ return (
       <Link id = "homeLink" to={`/`}>
         <button className = "logo-button">
         <img
-          src="https://1000logos.net/wp-content/uploads/2017/05/Reddit-Logo.png"
+          src={logo}
           alt="not-reddit-logo"
           className="logo"
         />

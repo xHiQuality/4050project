@@ -1,5 +1,6 @@
 // ./components/post.jsx
 import '../styles/post.css';
+import dawg from '../images/DAWG.png';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 //import {Link} from 'react-router-dom';
@@ -188,7 +189,7 @@ function Post(props) {
 
       <div id="modal">
           <div id="modalContainer">
-          <p id="alertMessage"><img id = "modalImage" src = "https://www.businessofindiegames.com/wp-content/uploads/2019/06/Reddit-Logo-Blue-.png" alt="reddit copy link logo"/>Link Copied!</p>
+          <p id="alertMessage"><img id = "modalImage" src = {dawg} alt="reddit copy link logo"/>Link Copied!</p>
           </div>
           </div>
        </div>
