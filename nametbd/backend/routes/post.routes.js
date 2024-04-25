@@ -12,6 +12,8 @@ module.exports = app => {
      // Retrieve all published posts
 //   router.get("/published", posts.findAllPublished);
 
+router.get("/author/:author", posts.findByAuthor);
+
   // Retrieve a single post with id
   router.get("/:id", posts.findOne);
 

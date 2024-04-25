@@ -4,42 +4,69 @@ import '../styles/profile.css';
 import '../styles/navbar.css';
 import axios from 'axios';
 import Post from  './post.js';
-import homepage from './homepage.js';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 function Profile() {
-    const [userData, setUserData] = useState({});
-    const [userPosts, setUserPosts] = useState([]);
-    //const [newCreatePost, setNewCreatePost] = useState('');
-    const [newUsername, setNewUsername] = useState('');
-    const [editingUserProfile, setEditingUserProfile] = useState(false);
-    const [newBio, setNewBio] = useState('');
+    // not working :(
+     const navigate = useNavigate();
+    // const [user, setUser] = useState(null);
 
-    useEffect (() => {
-        getUserData();
-        getUserPosts();
-    }, []);
+    // const {userId} = useParams();
 
-    const {username} = useParams();
+    // var username = '';
 
-    const getUserData = async() => {
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3001/api/users/id/${userId}`).then((res) => {
+    //     setUser(res.data);
+    //   }).catch((err) => {
+    //     console.log('Error from Post');
+    //   });
+    //   }, [userId]);
+
+    // if(user) {
+    //     username = user.username;
+    // }
+
+
+    const [username, setUsername] = useState(null);
+    const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState(null);
+
+    var accountImage = '';
+    const {userId} = useParams();
+    console.log(userId);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await setUsername(localStorage.getItem('auth-username'));
+
+    if (username) {
         try {
-            const response = await axios.get(`http://localhost:3001/api/users/id/${userData.iduser}`);
-            setUserData(response.data);
-        } catch (error) {
-            console.error(error);
+          const res = await axios.get(`http://localhost:3001/api/posts/author/${username}`);
+          setPosts(res.data);
+        } catch (err) {
+          console.log('Error fetching posts:', err);
         }
-    };
 
-    const getUserPosts = async() => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/posts?id=${userData.idpost}`);
-            setUserPosts(response.data);
-        } catch (error) {
-            console.error(error);
-        }
+            const res = await axios.get(`http://localhost:3001/api/users/username/${username}`);
+            setUser(res.data);
+          } catch (err) {
+            console.log('Error fetching posts:', err);
+          }
+      }
     };
+  
+    fetchData();
+  }, [username]);
 
+  if(user) {
+    accountImage = user.accountImage;
+  }
+
+  const handleCreate = (e) => {
+    navigate(`/createPage/${username}`);
+  }
     /*
     const handleCreatePost = async() => {
         try {
@@ -49,36 +76,36 @@ function Profile() {
         }
     };*/
 
-    const handleEditClick = () => {
-        setEditingUserProfile(true);
-        setNewUsername(userData.username);
-        setNewBio(userData.bio);
-    };
+    // const handleEditClick = () => {
+    //     setEditingUserProfile(true);
+    //     setNewUsername(userData.username);
+    //     setNewBio(userData.bio);
+    // };
 
-    const handleCancelClick = () => {
-        setEditingUserProfile(false);
-    };
+    // const handleCancelClick = () => {
+    //     setEditingUserProfile(false);
+    // };
 
-    const handleSaveClick = async () => {
-        try {
-            await axios.put(`http://localhost:3001/api/users/id/${userData.iduser}`, {
-                username: newUsername,
-                bio: newBio
-            });
-            setUserData({...userData, username: newUsername, bio: newBio});
-            setEditingUserProfile(false);
-        } catch (error) {
-            console.error (error);
-        }
-    };
+    // const handleSaveClick = async () => {
+    //     try {
+    //         await axios.put(`http://localhost:3001/api/users/id/${userData.iduser}`, {
+    //             username: newUsername,
+    //             bio: newBio
+    //         });
+    //         setUserData({...userData, username: newUsername, bio: newBio});
+    //         setEditingUserProfile(false);
+    //     } catch (error) {
+    //         console.error (error);
+    //     }
+    // };
 
-    const handleUsernameChange = (event) => {
-        setNewUsername(event.target.value);
-    };
+    // const handleUsernameChange = (event) => {
+    //     setNewUsername(event.target.value);
+    // };
 
-    const handleUserBioChange = (event) => {
-        setNewUsername(event.target.value);
-    };
+    // const handleUserBioChange = (event) => {
+    //     setNewUsername(event.target.value);
+    // };
 
     return (
         <div className="profilePage">
@@ -86,10 +113,10 @@ function Profile() {
             <div className="userProfile">
                 <div className="profileHeader">
                     <div className="profilePicture">
-                        <img src={userData.accountImage} width = "150" height = "150px" alt="User/Profile Picture"/>
+                        <img src={accountImage} width = "150" height = "150px" alt="User/Profile Picture" style = {{borderRadius: '50%'}}/>
                     </div>
                     
-                    {editingUserProfile ? (
+                    {/* {editingUserProfile ? (
                         <div>
                             <div className="userName">
                                 <h2>{userData.username}</h2>
@@ -100,17 +127,17 @@ function Profile() {
                             <div className="userBio">
                                 <textarea type="text" value={newBio} onChange={handleUserBioChange} placeholder="Enter new bio..."/>
                             </div>
-                        </div> ) : (
+                        </div> ) : ( */}
                         <div>
-                            <h2>mrudang</h2>
-                            <h2>{userData.username}</h2>
-                            <p>Email: {userData.email}</p>
-                            <p>{userData.bio}</p>
+                            <h2>{username}</h2>
+                            {/* <h2>{userData.username}</h2> */}
+                            {/* <p>Email: {userData.email}</p>
+                            <p>{userData.bio}</p> */}
                         </div>
-                    )}
+                    {/* )} */}
 
 
-                    {editingUserProfile ? (
+                    {/* {editingUserProfile ? (
                         <div className="editButtons">
                             <button className="saveButton" onClick={handleSaveClick}>Save</button>
                             <button className="cancelButton" onClick={handleCancelClick}>Cancel</button>
@@ -119,7 +146,7 @@ function Profile() {
                             <button className="editProfileButton" onClick={handleEditClick}>Edit Profile</button>
                             <button className="shareProfileButton">Share Profile</button>
                         </div>
-                    )}
+                    )} */}
                     
                 </div>
                 
@@ -127,17 +154,17 @@ function Profile() {
                 
                 <div className="profileInfo">  
                     <div className="userDetails">
-                        <p>Email: ///</p>
-                        <p>Number of posts: ///</p>
-                        <p>Member since: April 22, 2024</p>
-                        <p>Bio: Hello CSCI 4050/6050!</p>
+                        {/* <p>Email: ///</p> */}
+                        <p>Number of posts: {posts.length}</p>
+                        {/* <p>Member since: April 22, 2024</p>
+                        <p>Bio: Hello CSCI 4050/6050!</p> */}
                     </div>
 
                     <div className="Posts">
                         <h3>My Posts:</h3>
-                        <button className="createPostButton">Create Post</button>
-                        {Array.isArray(userPosts) && userPosts.map((posts, index) => (
-                            <Post className = "posts" key={index} item={posts}/>
+                        <button className="createPostButton" onClick={handleCreate}>Create Post</button>
+                        {posts.map((post, index) => (
+                            <Post className = "posts" key={index} item={posts[index]}/>
                         ))}
                         
                     </div>

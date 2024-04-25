@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import '../styles/Authmodal.css'; // Import your CSS file for styling
 import { UserDataContext, setUserData } from '../App';
+import {useNavigate} from 'react-router-dom';
 
 function AuthModal() {
   const {setUserData} = useContext(UserDataContext);
@@ -9,8 +10,12 @@ function AuthModal() {
   const [isSignUp, setIsSignUp] = useState(false); // State to track sign-up mode
   const [userExists, setUserExists] = useState(false); // State to track user existence
 
+  const navigate = useNavigate();
+
   const closeModal = () => {
     setIsOpen(false);
+    navigate('/');
+    window.location.reload();
   };
 
   const handleSignUpClick = () => {
@@ -30,6 +35,7 @@ function AuthModal() {
 
     try {
       // Send a GET request to check if the user exists
+      console.log("http://localhost:3001/api/users/?username=" + username);
       const userExistsResponse = await axios.get("http://localhost:3001/api/users/username/" + username);
       if (userExistsResponse && userExistsResponse.data) {
         // If user exists, proceed to login
@@ -42,6 +48,9 @@ function AuthModal() {
           });
           //console.log(loginResponse.data.token);
           localStorage.setItem("auth-token", loginResponse.data.token);
+
+          localStorage.setItem("auth-username", username);
+          localStorage.setItem("auth-id", loginResponse.data.user.iduser);
           
           console.log("Logged in User:", username);
         }
@@ -58,6 +67,7 @@ function AuthModal() {
              token: signUpResponse.data.token
            });
            localStorage.setItem("auth-token", signUpResponse.data.token);
+           localStorage.setItem("auth-username", username);
            console.log("Signed up and logged in User:", username);
          }
          } catch (error) {

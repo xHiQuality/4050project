@@ -29,7 +29,7 @@
     color: black;
     text-decoration: none;
     display: flex;
-    left: -11%;
+    left: -10%;
     padding-right: 1vw;
 }
 
@@ -58,11 +58,15 @@
     background-color: #19ABFF; 
   }
 
+  #create{
+    font-size: .8rem;
+  }
+
 .plus-icon{
     margin-bottom: auto;
     margin-top: auto;
-    width: 3vw;
-    height: 3vw;
+    width: 2vw;
+    height: 2vw;
     margin-right: 1vw;
 }
 
@@ -78,6 +82,23 @@
     width: 42%;
     border: none;
     background-color: rgb(224, 224, 224);
+}
+.profileItem{
+    background-color: inherit;
+    border: none;
+    position:relative;
+    left: -14%;
+     width: fit-content;
+}
+
+.profileItem:hover{
+    cursor: pointer;
+}
+
+#profile {
+    position: relative;
+    width: 3rem;
+    border-radius: 50%;
 }
 
 .bar{

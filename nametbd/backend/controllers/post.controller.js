@@ -83,6 +83,20 @@ exports.create = (req,res) => {
         })
     };
     
+    //Find all post with user
+    exports.findByAuthor = (req, res) => {
+      const author = req.params.author; // Access the author from req.params instead of req.query
+    
+      Post.findAll({ where: { author: author } })
+          .then(data => {
+              res.send(data);
+          })
+          .catch(err => {
+              res.status(500).send({
+                  message: err.message || "Some error occurred while retrieving posts."
+              });
+          });
+  };
 
     exports.upvote = (req, res) => {
         const idpost = req.params.id;

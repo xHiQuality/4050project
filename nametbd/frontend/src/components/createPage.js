@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import '../styles/createPage.css';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import NavBar from './navbar';
 import axios from 'axios';
 
 
-function PostPage(props) {
+function CreatePage(props) {
 
     const navigate = useNavigate();
+
+    const {username} = useParams();
+    console.log(username);
 
     const handleChange = (e) => {
         setPost({ ...post, [e.target.name]: e.target.value });
       };
 
     const [post, setPost] = useState({
-        author: 'admin',
+        author: username,
         content: '',
         tag: '',
         header: '',
@@ -24,12 +27,11 @@ function PostPage(props) {
 
  const handleSubmit = (event) =>{
     event.preventDefault();
-
     axios
       .post(`http://localhost:3001/api/posts/`, post)
       .then((res) => {
         setPost({
-            author: 'admin',
+            author: username,
             content: '',
             tag: '',
             header: '',
@@ -113,4 +115,4 @@ return (
   );
 }
 
-export default PostPage;
+export default CreatePage;

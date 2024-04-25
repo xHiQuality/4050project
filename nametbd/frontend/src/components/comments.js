@@ -8,6 +8,8 @@ export default function Comments(props) {
     const comment = props.item;
     const [user, setUser] = useState(null);
 
+   var userAccountImage = '';
+
     useEffect(() => {
         axios.get('http://localhost:3001/api/users', {
         params: {
@@ -21,11 +23,9 @@ export default function Comments(props) {
       });
       }, [comment.commentAuthor]);
 
-      if (!user) {
-        return <div>Loading...</div>; 
+      if (user) {
+        userAccountImage = user[0].accountImage;
       }
-      
-      console.log(user);
 
     const handleUpClick = (event) => {
         try {
@@ -51,7 +51,7 @@ export default function Comments(props) {
     return (
     <div className='comment'>
     <ul className = "commentBar">
-        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile/`}><img id = "commentAccountImg" src={user[0].accountImage} alt="account"/></Link></li>
+        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile/`}><img id = "commentAccountImg" src={userAccountImage} alt="account"/></Link></li>
         <li id = "commentAuthor"><h5 id = "commentAuthorInfo">{comment.commentAuthor}</h5></li>
     </ul>
     <div className='commentContainer'>

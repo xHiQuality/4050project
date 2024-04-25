@@ -61,7 +61,7 @@ function App() {
               path="/profile/:userid" 
               element = {<Profile/>}/>
               <Route 
-              path='/createPage/'
+              path='/createPage/:username'
               element = {<CreatePage />}
               />
           </Routes>

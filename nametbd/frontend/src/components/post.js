@@ -10,6 +10,8 @@ import React, {useEffect, useState} from 'react';
 function Post(props) {
   var commentNum = 0;
   const post = props.item;
+  var userId = '';
+  var userAccountImage = '';
 
   const [user, setUser] = useState(null);
   const [comment, setComment] = useState(null);
@@ -39,9 +41,10 @@ function Post(props) {
   }, [post.idpost]);
 
   // Check if user is null or undefined before accessing its properties
-  if (!user ) {
-    return <div>Loading...</div>; 
-  }
+  if (user) {
+    userId = user[0].iduser;
+    userAccountImage = user[0].accountImage;
+  } 
 
   if (comment){
     commentNum = comment.length;
@@ -69,7 +72,7 @@ function Post(props) {
     const handleAccountClick = (event) => {
       //stop from going to post page
       event.stopPropagation();
-      window.location.href = `/profile/${user[0].iduser}`;
+      window.location.href = `/profile/${userId}`;
     };
 
     const handleFollowClick = (event) => {
@@ -155,7 +158,7 @@ function Post(props) {
       </div>
       <div className = "column2">
         <ul className="menuBar">
-            <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={user[0].accountImage} alt="account"/></button></li>
+            <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={userAccountImage} alt="account"/></button></li>
             <li id = "info"><h5 id = "postInfo"> <span style={{fontWeight: "bold", color: "rgb(71, 71, 71)"}}>@{post.tag}</span> . Posted by {post.author}</h5></li>
             <li id = "follow"><button className = "followButton" onClick={handleFollowClick}> Follow</button></li>
         </ul>

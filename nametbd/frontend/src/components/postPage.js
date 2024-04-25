@@ -12,6 +12,17 @@ export default function PostPage(props) {
   const [comments, setComments] = useState();
   const [commentData, setCommentData] = useState('');
 
+  const [token, setToken] = useState();
+  const [username, setUsername] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setToken(localStorage.getItem('auth-token'));
+      await setUsername(localStorage.getItem('auth-username'));
+    };
+    fetchData();
+  }, []);
+
   // const location = useLocation();
 
   // useEffect(() => {
@@ -61,13 +72,14 @@ export default function PostPage(props) {
       console.log(commentData);
 
       axios.post('http://localhost:3001/api/comments', {
-        commentAuthor: "admin",
+        commentAuthor: username,
         content: commentData,
         postID: postid,
         votes: 0
       }).catch((err) => {
         console.log('Error from PostPage');
       });
+      
 
       event.target.reset();
 
