@@ -76,6 +76,8 @@ function CreatePage({setPosts}) {
 
         // Push to /
         navigate(`/`);
+
+        window.location.reload();
       })
       .catch((err) => {
         console.log('Error in CreatePost!');

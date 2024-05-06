@@ -50,10 +50,9 @@ function AuthModal() {
             token: loginResponse.data.token
             
           });
-          //console.log(loginResponse.data.token);
+          console.log(loginResponse.data);
           localStorage.setItem("auth-token", loginResponse.data.token);
 
-          localStorage.setItem("auth-username", username);
           localStorage.setItem("auth-id", loginResponse.data.user.id);
           
           console.log("Logged in User:", username);
@@ -61,6 +60,7 @@ function AuthModal() {
           setUsername('');
           setPassword('');
           closeModal();
+    
         }
       }
      } catch(err) {
@@ -78,7 +78,7 @@ function AuthModal() {
       try {
         //create new user and then log them in
        const newUser = { username, password, accountImage: "" };
-       const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
+       const signUpResponse = await axios.post("http://localhost:3001/api/users/signup", newUser);
        if (signUpResponse && signUpResponse.data) {
          // Assuming successful sign-up returns login details
          setUserData({
@@ -87,8 +87,7 @@ function AuthModal() {
          });
          console.log(signUpResponse);
          localStorage.setItem("auth-token", signUpResponse.data.token);
-
-         localStorage.setItem("auth-username", username);
+         localStorage.setItem("auth-id", signUpResponse.data.user.id);
          console.log("Signed up and logged in User:", username);
        }
        setUsername('');

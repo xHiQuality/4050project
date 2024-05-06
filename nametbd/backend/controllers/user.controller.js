@@ -93,15 +93,15 @@ exports.signup = async (req, res) => {
 
   const hashedPassword = await bcryptjs.hash(req.body.password, 8);
   
-    const user = {
+
+    const newUser = await User.create({
       username: req.body.username,
       password: hashedPassword,
-      accountImage: req.body.accountImage
-    };
-    User.create({username: user.username, password: user.password, accountImage: user.accountImage})
-    .then(data => {
-      res.send(data);
-    })
+    });
+
+    const token = jwt.sign({id: newUser.iduser}, "passwordKey");
+    res.send({ token, user: { id: newUser.iduser, username: newUser.username } });
+
   } catch (err) {
     res.status(400).send({
       message: err.message || "Error occured in Signup"

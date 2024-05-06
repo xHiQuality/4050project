@@ -35,18 +35,14 @@ function Profile({setPosts}) {
         try {
             const res = await axios.get(`http://localhost:3001/api/users/id/${id}`);
             setUser(res.data);
-          } catch (err) {
-            console.log('Error fetching posts:', err);
+       
+          const resPost = await axios.get(`http://localhost:3001/api/posts/author/${res.data.username}`);
+
+          for (var i=0; i<resPost.data.length; i++){
+            resPost.data[i].home = 'yes';
           }
 
-        try {
-          const res = await axios.get(`http://localhost:3001/api/posts/author/${user.username}`);
-
-          for (var i=0; i<res.data.length; i++){
-            res.data[i].home = 'yes';
-          }
-
-          setUserPosts(res.data);
+          setUserPosts(resPost.data);
         } catch (err) {
           console.log('Error fetching posts:', err);
         }
