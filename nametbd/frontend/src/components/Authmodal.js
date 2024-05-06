@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import '../styles/Authmodal.css'; // Import your CSS file for styling
 import { UserDataContext, setUserData } from '../App';
 import {useNavigate} from 'react-router-dom';
 
 function AuthModal() {
+  const [error, setError] = useState('');
   const {setUserData} = useContext(UserDataContext);
   const [isOpen, setIsOpen] = useState(true);
   const [isSignUp, setIsSignUp] = useState(false); // State to track sign-up mode
-  const [userExists, setUserExists] = useState(false); // State to track user existence
 
   const navigate = useNavigate();
 
@@ -30,16 +30,20 @@ function AuthModal() {
   const [password, setPassword] = useState('');
 
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       // Send a GET request to check if the user exists
-      console.log("http://localhost:3001/api/users/?username=" + username);
       const userExistsResponse = await axios.get("http://localhost:3001/api/users/username/" + username);
-      if (userExistsResponse && userExistsResponse.data) {
-        // If user exists, proceed to login
-        const loginResponse = await axios.get("http://localhost:3001/api/users/login", { username, password });
+      console.log(userExistsResponse.data == '');
+      if (userExistsResponse.data == '') {
+        setError("User doesn't exist. Please sign up.");
+      }
+      if (userExistsResponse && userExistsResponse.data != '') {
+        const loginUser = {username, password};
+        console.log(loginUser);
+        const loginResponse = await axios.post("http://localhost:3001/api/users/login", loginUser);
         if (loginResponse && loginResponse.data) {
           setUserData({
             user: loginResponse.data.user,
@@ -50,116 +54,59 @@ function AuthModal() {
           localStorage.setItem("auth-token", loginResponse.data.token);
 
           localStorage.setItem("auth-username", username);
-          localStorage.setItem("auth-id", loginResponse.data.user.iduser);
+          localStorage.setItem("auth-id", loginResponse.data.user.id);
           
           console.log("Logged in User:", username);
+
+          setUsername('');
+          setPassword('');
+          closeModal();
         }
       }
-     } catch {
-         try {
-          // If user does not exist, create new user and then log them in
-         const newUser = { username, password, accountImage: "" };
-         const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
-         if (signUpResponse && signUpResponse.data) {
-           // Assuming successful sign-up returns login details
-           setUserData({
-             user: signUpResponse.data.user,
-             token: signUpResponse.data.token
-           });
-           localStorage.setItem("auth-token", signUpResponse.data.token);
-           localStorage.setItem("auth-username", username);
-           console.log("Signed up and logged in User:", username);
-         }
-         } catch (error) {
-          console.error('Axios failed in Authmodal.js', error);
-         }
-        
-       }
-       finally {
-        // Reset input fields and close modal
-        setUsername('');
-        setPassword('');
-        closeModal();
+     } catch(err) {
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+          setError('An unknown error occurred'); 
       }
+       }
      };  
+ 
+     const handleSignUp = async (event) => {
+      event.preventDefault();
 
-      
-  //     if (userExistsResponse && userExistsResponse.data) {
-  //       // If user exists, proceed to login
-  //       const loginResponse = await axios.get("http://localhost:3001/api/users/login", { username, password });
-  //       if (loginResponse && loginResponse.data) {
-  //         setUserData({
-  //           user: loginResponse.data.user,
-  //           token: loginResponse.data.token
-            
-  //         });
-  //         //console.log(loginResponse.data.token);
-  //         localStorage.setItem("auth-token", loginResponse.data.token);
-          
-  //         console.log("Logged in User:", username);
-  //       }
-  //     } else {
-  //       // If user does not exist, create new user and then log them in
-  //       const newUser = { username, password, accountImage: "" };
-  //       const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
-  //       if (signUpResponse && signUpResponse.data) {
-  //         // Assuming successful sign-up returns login details
-  //         setUserData({
-  //           user: signUpResponse.data.user,
-  //           token: signUpResponse.data.token
-  //         });
-  //         localStorage.setItem("auth-token", signUpResponse.data.token);
-  //         console.log("Signed up and logged in User:", username);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Axios failed in Authmodal.js', error);
-  //   } finally {
-  //     // Reset input fields and close modal
-  //     setUsername('');
-  //     setPassword('');
-  //     closeModal();
-  //   }
-  // };
+      try {
+        //create new user and then log them in
+       const newUser = { username, password, accountImage: "" };
+       const signUpResponse = await axios.post("http://localhost:3001/api/users/", newUser);
+       if (signUpResponse && signUpResponse.data) {
+         // Assuming successful sign-up returns login details
+         setUserData({
+           user: signUpResponse.data.user,
+           token: signUpResponse.data.token
+         });
+         console.log(signUpResponse);
+         localStorage.setItem("auth-token", signUpResponse.data.token);
 
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     // Send a POST request to your backend endpoint to check if the user exists
-  //     axios.get("http://localhost:8080/api/users/username?username=" + username)
-  //     .then(data => {
-  //       if (data) {
-  //         setIsSignUp(false);
-  //       } else {
-  //         setIsSignUp(true);
-  //       }
-  //     });
-  //     // If user exists and it's a sign-up attempt, don't proceed with sign-up
-  //     if (isSignUp) {
-  //       const newUser = {username, password, accountImage: ""};
-  //       await axios.post("http://localhost:8080/api/users/signup", newUser);
-  //     }
-  //     const loginRes = await axios.get("http://localhost:8080/api/users/login", {username, password});
-  //     setUserData({
-  //       user: loginRes.data.user,
-  //       token: loginRes.data.token
-  //     });
-  //     localStorage.setItem("auth-token", loginRes.data.token);
-
-  //     // Perform authentication logic here
-  //     console.log("Username:", username);
-  //     console.log("Password:", password);
-  //   } catch (error) {
-  //     console.log('Axios failed in Authmodal.js', error);
-  //   } finally {
-  //     // Reset input fields
-  //     setUsername('');
-  //     setPassword('');
-  //     closeModal();
-  //   }
-  // };
+         localStorage.setItem("auth-username", username);
+         console.log("Signed up and logged in User:", username);
+       }
+       setUsername('');
+       setPassword('');
+       closeModal();
+       } catch (err) {
+        console.log(err);
+        if (err.response.data.message === 'Validation error') {
+          // Handle the validation error
+          setError("User already exists. Please login.");
+        }
+        else if (err.response && err.response.data && err.response.data.message) {
+          setError(err.response.data.message);
+        } else {
+            setError('An unknown error occurred'); 
+        }
+       }
+     }
 
   return (
     <>
@@ -168,7 +115,7 @@ function AuthModal() {
           <div className="modal-content">
             <span className="close" onClick={closeModal}>&times;</span>
             <h2>{isSignUp ? 'Sign Up' : 'Log In'}</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={isSignUp ? handleSignUp : handleLogin}>
               <input
                 className="login-page-input"
                 type="text"
@@ -192,9 +139,10 @@ function AuthModal() {
             {isSignUp ? (
               <p>Already have an account? <a href="#" onClick={handleSignInClick}>Log In</a></p>
             ) : (
-              <p>New to Reddit? <a href="#" onClick={handleSignUpClick}>Sign Up</a></p>
+              <p>New to DAWGIT? <a href="#" onClick={handleSignUpClick}>Sign Up</a></p>
             )}
-            {userExists && <p>User already exists!</p>}
+
+            {error && <p className="error-message">{error}</p>}
           </div>
         </div>
       )}

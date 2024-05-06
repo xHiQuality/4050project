@@ -2,32 +2,13 @@ const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
 const jwt = require("jsonwebtoken");
+const bcryptjs = require('bcryptjs');
 const auth = require('../middleware/auth')
 // const axios = require('axios');
 
 
-// Route to check if a user exists
-// exports.checkUserExistence = (req, res) => {
-//   const { username } = req.body;
-//   console.log("check");
-
-//   // Use Sequelize's findOne method to check if the user exists
-//   User.findOne({ where: { username } })
-//     .then(user => {
-//       if (user) {
-//         res.json({ exists: true });
-//       } else {
-//         res.json({ exists: false });
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Error checking user existence:', error);
-//       res.status(500).json({ error: 'Internal server error' });
-//     });
-// };
-
 //Create and Save a new User
-exports.create = (req,res) => {
+exports.create = async (req,res) => {
 //Validate request
  if (!req.body.username) {
     res.status(400).send({
@@ -40,11 +21,14 @@ exports.create = (req,res) => {
     });
     return;
 }
+
+const hashedPassword = await bcryptjs.hash(req.body.password, 8);
+
 //Create a user
   const user = {
     iduser: req.body.iduser,
     username: req.body.username,
-    password: req.body.password,
+    password: hashedPassword
   };
   
   //Save User in the database
@@ -83,6 +67,7 @@ exports.findUser = async (req, res) => {
 
       User.findOne({ where: { username: userName } })
       .then(data => {
+     
           res.send(data);
       })
       .catch(err => {
@@ -92,7 +77,7 @@ exports.findUser = async (req, res) => {
       });
   };
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
   try {
     if (!req.body.username) {
       return res.status(400).send({
@@ -105,10 +90,12 @@ exports.signup = (req, res) => {
       });
       return;
   }
+
+  const hashedPassword = await bcryptjs.hash(req.body.password, 8);
   
     const user = {
       username: req.body.username,
-      password: req.boddy.password,
+      password: hashedPassword,
       accountImage: req.body.accountImage
     };
     User.create({username: user.username, password: user.password, accountImage: user.accountImage})
@@ -122,31 +109,32 @@ exports.signup = (req, res) => {
   }
 };
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   try {
     
     const username = req.body.username;
     const password = req.body.password;
     
-    const user = User.findOne({username: username});
-    console.log(user)
+    const user = await User.findOne({ where: { username: username } });
+    
     if (!user) {
-      return res.status(400)
-        .send({message: "User with that username does not exist"});
-    } // if
-
-    const isMatch = (password == user.password);
+      return res.status(400).send({ message: "User with that username does not exist" });
+    }
+  
+    const isMatch = await bcryptjs.compare(password, user.password);
+    //const isMatch = password == user.password;
 
     if (!isMatch) {
       return res.status(400).send({message: "Incorrect password"});
     } // if
 
-    const token = jwt.sign({id: user.id}, "passwordKey");
-    res.json({token, user: {id: user.id, username: username}});
+    const token = jwt.sign({id: user.iduser}, "passwordKey");
+    res.json({token, user: {id: user.iduser, username: username}});
+
   } catch (err) {
     console.log("backend failed in login ", err);
     res.status(400).send({message: "error in login"});
-  }
+}
 };
 
 exports.logout = (req, res) => {

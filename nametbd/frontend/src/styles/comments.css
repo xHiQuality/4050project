@@ -19,7 +19,7 @@ position: relative;
 #commentAccount{
     margin-top: auto;
     margin-bottom: auto;
-    width: 5%;
+    width: 2.5rem;
 }
 #upComment, #downComment{
     margin-top: auto;
@@ -61,7 +61,7 @@ position: relative;
 
 #commentAuthor{
     margin-left: .5rem;
-    width: 25%;
+    width: 30%;
 }
 
 #commentTimeInfo{

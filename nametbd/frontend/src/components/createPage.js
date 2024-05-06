@@ -4,40 +4,75 @@ import {useNavigate, useParams} from 'react-router-dom';
 import NavBar from './navbar';
 import axios from 'axios';
 
+function CreatePage({setPosts}) {
 
-function CreatePage(props) {
+  const [userPost, setUserPost] = useState({
+    author: '',
+    content: '',
+    tag: '',
+    header: '',
+    votes: 0,
+    image: '',
+  });
+
+  const [user, setUser] = useState("");
 
     const navigate = useNavigate();
 
-    const {username} = useParams();
-    console.log(username);
+    const {id} = useParams();
+
+    useEffect(() => {
+      axios
+        .get(`http://localhost:3001/api/users/id/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          setUser(res.data);
+        })
+        .catch((err) => {
+          console.log('Error from createPage');
+        });
+
+        setUserPost({
+          author: user.username,
+          content: '',
+          tag: '',
+          header: '',
+          votes: 0,
+          image: '',
+        });
+
+    }, [id, user.username]);
 
     const handleChange = (e) => {
-        setPost({ ...post, [e.target.name]: e.target.value });
+        setUserPost({ ...userPost, [e.target.name]: e.target.value });
       };
 
-    const [post, setPost] = useState({
-        author: username,
-        content: '',
-        tag: '',
-        header: '',
-        votes: 0,
-        image: '',
-      });
-
  const handleSubmit = (event) =>{
-    event.preventDefault();
-    axios
-      .post(`http://localhost:3001/api/posts/`, post)
-      .then((res) => {
-        setPost({
-            author: username,
-            content: '',
-            tag: '',
-            header: '',
-            votes: 0,
-            image: '',
+  event.preventDefault();
+
+  axios
+        .get(`http://localhost:3001/api/users/id/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          setUser(res.data);
+        })
+        .catch((err) => {
+          console.log('Error from createPage');
         });
+
+  userPost.author = user.username;
+
+  axios
+    .post(`http://localhost:3001/api/posts/`, userPost)
+    .then((res) => {
+      setUserPost({
+          author: user.username,
+          content: '',
+          tag: '',
+          header: '',
+          votes: 0,
+          image: '',
+      });
 
         // Push to /
         navigate(`/`);
@@ -46,10 +81,14 @@ function CreatePage(props) {
         console.log('Error in CreatePost!');
       });
   };
+
+  if (!user) {
+    return <div>Loading...</div>; 
+  }
   
 return (
     <div className = "postPageContainer">
-        <NavBar> </NavBar>
+        <NavBar setPosts = {setPosts}/>
         <h3 id ="createPageHeader"> Create a post</h3>
         <hr style = {{borderColor: 'white'}}/>
         <div className = "postForm">
@@ -60,12 +99,11 @@ return (
                 </div>
                 <input
                     id = 'tag'
-                    value={post.tag}
+                    value={userPost.tag}
                     onChange={handleChange}
                     type="text"
                     name="tag"
                     placeholder='Tag (optional)' 
-                    onFocus={() => console.log('Focused!')} // Add onFocus event handler
                     style={{outline: 'none'}}
                 />
                 </div>
@@ -73,7 +111,7 @@ return (
             <div className="formWrapper">
               <input
                 id = 'header'
-                value={post.header}
+                value={userPost.header}
                 onChange={handleChange}
                 type="text"
                 name="header"
@@ -84,7 +122,7 @@ return (
             <div className="formWrapper" id = 'contentWrapper'>
               <textarea
                 id = 'content'
-                value={post.content}
+                value={userPost.content}
                 onChange={handleChange}
                 type="text"
                 name="content"
@@ -95,7 +133,7 @@ return (
               <div className="formWrapper">
               <input
                 id = 'url'
-                value={post.image}
+                value={userPost.image}
                 onChange={handleChange}
                 type="text"
                 name="image"

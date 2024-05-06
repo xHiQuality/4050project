@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
             unique: true // Add unique constraint
         },
         password: {
-            type: Sequelize.STRING(20),
+            type: Sequelize.STRING(60),
             allowNull: false, // Specify NOT NULL constraint
         },
         accountImage: {
@@ -24,10 +24,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(250),
             allowNull: true
         },
-        email: {
-            type: Sequelize.STRING(50),
-            allowNull: true
-        }
     }, {
         timestamps: false
     });

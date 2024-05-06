@@ -10,25 +10,31 @@ export default function Comments(props) {
 
    var userAccountImage = '';
 
+   const [id, setId] = useState(null);
+   const [iduser, setUserId] = useState('');
+
+   useEffect(() => {
+    setId(localStorage.getItem('auth-id'));
+}, []);
+ 
+
     useEffect(() => {
-        axios.get('http://localhost:3001/api/users', {
-        params: {
-          username: comment.commentAuthor,
-          iduser: comment.commentAuthor.iduser
-        }
+        axios.get('http://localhost:3001/api/users/username/' + comment.commentAuthor, {
       }).then((res) => {
         setUser(res.data);
+        setUserId(res.data.iduser);
+    
       }).catch((err) => {
         console.log('Error from Post');
       });
       }, [comment.commentAuthor]);
 
       if (user) {
-        userAccountImage = user[0].accountImage;
+        userAccountImage = user.accountImage;
       }
 
  
-    const handleUpClick = (event) => {
+    const handleUpClick = async (event) => {
         try {
             const response = axios.put('http://localhost:3001/api/comments/upvote/' + comment.commentID);
             window.location.reload();
@@ -36,10 +42,9 @@ export default function Comments(props) {
           } catch (err) {
             console.log("Error in comment upvote axios");
           } // try-catch
-        // My TODO: will update backend. And vote number wiil update.
       }
   
-      const handleDownClick = (event) => {
+      const handleDownClick = async (event) => {
         try {
             const response = axios.put('http://localhost:3001/api/comments/downvote/' + comment.commentID);
             window.location.reload();
@@ -47,16 +52,26 @@ export default function Comments(props) {
           } catch (err) {
             console.log("Error in comment downvote axios");
           } // try-catch
-        // My TODO: will update backend. And vote number wiil update.
       }
-  
+
+      const handleDelete = async (idcomment) => {
+        try {
+          await axios.delete(`http://localhost:3001/api/comments/${idcomment}`);
+          window.location.reload();
+        } catch (err) {
+          console.log("Error in deleting comment");
+        }
+      }
 
 
     return (
     <div className='comment'>
     <ul className = "commentBar">
-        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile/`}><img id = "commentAccountImg" src={userAccountImage} alt="account"/></Link></li>
+        <li id = "commentAccount" ><Link id = "commentAccountButton" to={`/profile/${iduser}`}><img id = "commentAccountImg" src={userAccountImage} alt="account"/></Link></li>
         <li id = "commentAuthor"><h5 id = "commentAuthorInfo">{comment.commentAuthor}</h5></li>
+        <li style = {{display: id == iduser ? 'block': 'none'}}><button onClick={() => handleDelete(comment.commentID)} style = {{width: '7%', border: 'none', backgroundColor: 'inherit', cursor: 'pointer', float: 'right'}}>
+              <img src = "https://www.pinclipart.com/picdir/big/172-1720992_trash-vector-png-clipart-rubbish-bins-waste-paper.png" alt = 'trash' style = {{width: "100%"}}/>
+          </button></li>
     </ul>
     <div className='commentContainer'>
         <p> {comment.content}</p>

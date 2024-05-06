@@ -11,6 +11,20 @@ export const UserDataContext = createContext(null);
 
 function App() {
 
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/api/posts')
+      .then((res) => {
+        console.log(res.data);
+        setPosts(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from HomePage');
+      });
+  }, []);
+
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined
@@ -50,19 +64,19 @@ function App() {
             <Route
               exact
               path="/"
-              element={<Homepage />} // TODO change state
+              element={<Homepage posts ={posts} setPosts = {setPosts}/>} // TODO change state
             />
             <Route
               exact
               path="/postPage/:postid"
-              element={<PostPage />} // TODO change state
+              element={<PostPage setPosts = {setPosts}/>} // TODO change state
             />
             <Route 
-              path="/profile/:userid" 
-              element = {<Profile/>}/>
+              path="/profile/:id" 
+              element = {<Profile setPosts = {setPosts}/>}/>
               <Route 
-              path='/createPage/:username'
-              element = {<CreatePage />}
+              path='/createPage/:id'
+              element = {<CreatePage setPosts = {setPosts}/>}
               />
           </Routes>
         </div>

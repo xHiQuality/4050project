@@ -1,11 +1,7 @@
-// ./components/post.jsx
 import '../styles/post.css';
 import dawg from '../images/DAWG.png';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-//import {Link} from 'react-router-dom';
-
-
 
 function Post(props) {
   var commentNum = 0;
@@ -17,16 +13,13 @@ function Post(props) {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/users', {
-    params: {
-      username: post.name
-    }
+    axios.get('http://localhost:3001/api/users/username/' + post.author, {
   }).then((res) => {
     setUser(res.data);
   }).catch((err) => {
     console.log('Error from Post');
   });
-  }, [post.name]);
+  }, [post.author]);
   
   useEffect(() => {
     axios.get(`http://localhost:3001/api/comments/`, {
@@ -42,8 +35,8 @@ function Post(props) {
 
   // Check if user is null or undefined before accessing its properties
   if (user) {
-    userId = user[0].iduser;
-    userAccountImage = user[0].accountImage;
+    userId = user.iduser;
+    userAccountImage = user.accountImage;
   } 
 
   if (comment){
@@ -73,18 +66,6 @@ function Post(props) {
       //stop from going to post page
       event.stopPropagation();
       window.location.href = `/profile/${userId}`;
-    };
-
-    const handleFollowClick = (event) => {
-      //stop from going to post page
-      event.stopPropagation();
-      // My TODO: will update backend. And button wiil change to unfollow.
-    };
-
-    const handleSaveClick = (event) => {
-      //stop parent's click event handler
-      event.stopPropagation();
-      // My TODO: will update backend. And button will be higlighted.
     };
 
     const handleShareClick = (event) => {
@@ -140,13 +121,13 @@ function Post(props) {
 
        //doesn't work on diff page, not sure why
 
-       window.location.replace(`postPage/${post.idpost}`);
+       window.location.replace(`postPage/${post.idpost}#commentAnchor`);
 
     }
     
   return (
     
-    <div  className = {post.home === "yes" ? "postContainerHome" : "postContainer"} onClick={handlePostClick}>
+    <div  className = {post.home == "yes" ? "postContainerHome" : "postContainer"} onClick={handlePostClick}>
     <div className="post">
     <div className = "column1">
         <div className="votes">
@@ -163,18 +144,17 @@ function Post(props) {
         <ul className="menuBar">
             <li id = "account" ><button id = "accountButton" onClick={handleAccountClick}><img id = "accountImg" src={userAccountImage} alt="account"/></button></li>
             <li id = "info"><h5 id = "postInfo"> <span style={{fontWeight: "bold", color: "rgb(71, 71, 71)"}}>@{post.tag}</span> . Posted by {post.author}</h5></li>
-            <li id = "follow"><button className = "followButton" onClick={handleFollowClick}> Follow</button></li>
         </ul>
       <hr></hr>
       <div className="description">
         <h3 className="title">{post.header}</h3>
-        {post.content ? post.home === "yes" ? <div className="gradientTextContainer"><p> {post.content} </p> </div> : <div className="textContainer"><p> {post.content} </p> </div>  : null}
+        {post.content ? post.home == "yes" ? <div className="gradientTextContainer"><p> {post.content} </p> </div> : <div className="textContainer"><p> {post.content} </p> </div>  : null}
         {post.image ? <img className="visual" src={post.image} alt='post'/> : null}
         {post.vid ? <video className="visual" src={post.vid}/> : null}
       </div>
       <ul className="interactBar">
         <li id = "comment">
-          <button onClick={handleCommentClick} className = "interactButton" id = "postCommentButton" disabled={post.home === "no" ? true : false}>
+          <button onClick={handleCommentClick} className = "interactButton" id = "postCommentButton" disabled={post.home == "no" ? true : false}>
             <img id = "commentImage" className = "interactItem" src={"https://icon-library.com/images/comment-icon-transparent/comment-icon-transparent-12.jpg"} alt="comments"/>
             <p className = "text">{commentNum}</p>
           </button>
@@ -183,12 +163,6 @@ function Post(props) {
           <button className = "interactButton" onClick={handleShareClick}>
             <img className = "interactItem" src={"https://www.pngall.com/wp-content/uploads/2/Share-PNG-File.png"} alt="share"/> 
             <p  className = "text">Share</p> 
-            </button>
-          </li>
-          <li id = "save">
-            <button className = "interactButton" onClick={handleSaveClick}>
-              <img id = "saveImage" className = "interactItem" src={"https://clipground.com/images/bookmark-icon-clipart-1.png"} alt="save"/> 
-              <p  className = "text">Save</p> 
             </button>
           </li>
       </ul>

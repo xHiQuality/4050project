@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useContext} from 'react';
 import '../styles/navbar.css';
+import axios from 'axios';
 import logo from '../images/DAWGIT.png';
 import { Link, useNavigate} from 'react-router-dom';
 import Authmodal from './Authmodal.js';
-import axios from 'axios';
 import {UserDataContext} from '../App.js'
 
-function Navbar(props) {
+function Navbar({setPosts}) {
   const {setUserData} = useContext(UserDataContext);
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+
+  const [posts, setOriginalPosts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/api/posts')
+      .then((res) => {
+        console.log(res.data);
+        setOriginalPosts(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from HomePage');
+      });
+  }, []);
 
 
 
@@ -22,13 +37,13 @@ function Navbar(props) {
   };
 
   const [token, setToken] = useState();
-  const [username, setUsername] = useState(null);
+  const [id, setId] = useState(null);
 
 
   useEffect(() => {
     const fetchData = async () => {
       setToken(localStorage.getItem('auth-token'));
-      await setUsername(localStorage.getItem('auth-username'));
+      await setId(localStorage.getItem('auth-id'));
     };
   
     fetchData();
@@ -38,14 +53,7 @@ function Navbar(props) {
 
   const handleProfile = async (event) => {
     event.preventDefault();
-
-    try {
-      const res = await axios.get(`http://localhost:3001/api/users/username/${username}`);
-      const user = res.data;
-      navigate(`/profile/${user.iduser}`);
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
-    }
+    navigate(`/profile/${id}`);
   };
 
   const handleLogout = async (e) => {
@@ -56,6 +64,8 @@ function Navbar(props) {
       user: undefined,
     });
 
+
+
     localStorage.setItem('auth-token', '');
     localStorage.setItem('auth-Id', '');
 
@@ -64,11 +74,16 @@ function Navbar(props) {
   
 
   }
+
+  const handleHomeClick = async (e) => {
+    navigate('/');
+    window.location.reload();
+  }
 return (
   <div className = "container">
     <nav className="navbar">
       <div className="navbar-logo">
-      <Link id = "homeLink" to={`/`}>
+      <Link id = "homeLink" onClick={handleHomeClick}>
         <button className = "logo-button">
         <img
           src={logo}
@@ -80,6 +95,7 @@ return (
       </div>
       <div className="bar">
         <input
+          onChange={(e) => setSearchValue(e.target.value)}
           type="text"
           placeholder="Search Not Reddit"
           id="navbar-search-field"
@@ -89,12 +105,13 @@ return (
           alt="search icon"
           className="search-icon"
           style={{ cursor: 'pointer' }}
+          onClick={handleSearch}
         />
       </div>
       <button  className='profileItem' onClick={handleProfile}>
         <img id = 'profile' alt = "profile" style = {{display: token ? 'block': 'none'}} src = "https://imgs.search.brave.com/MWlI8P3aJROiUDO9A-LqFyca9kSRIxOtCg_Vf1xd9BA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc"/>
       </button>
-        <Link to ={`/createPage/${username}`} className="navButton" id="create-button" style = {{display: token ? 'flex': 'none'}}>
+        <Link to ={`/createPage/${id}`} className="navButton" id="create-button" style = {{display: token ? 'flex': 'none'}}>
           <img
             src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-math-icon-download-icons-9.png"
             alt="create post"
@@ -122,6 +139,20 @@ return (
       {showAuthModal && <Authmodal />}
     </div>
   );
+  async function handleSearch() {
+    const newPosts = [];
+    
+ 
+      posts.forEach((post, index) => {
+        if (post.header.toLowerCase().includes(searchValue) || post.tag.toLowerCase().includes(searchValue) || post.content.toLowerCase().includes(searchValue)) {
+          newPosts.push(post);
+        }
+      });
+      setPosts(newPosts);
+
+      navigate(`/`);
+    
+  }
 }
 
 export default Navbar;
