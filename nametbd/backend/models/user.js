@@ -20,10 +20,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(500),
             allowNull: true,
         },
-        bio: {
-            type: Sequelize.STRING(250),
-            allowNull: true
-        },
     }, {
         timestamps: false
     });
